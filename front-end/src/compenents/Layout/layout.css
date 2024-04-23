@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+
+  gap: 20px;
+}
+
+.main .content {
+  min-height: 600px;
+  width: 100%;
+  margin-top: 80px;
+  position: relative;
+  padding: 20px;
+}

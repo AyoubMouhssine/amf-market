@@ -1,0 +1,96 @@
+.product-detail-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: white;
+  border: 1px solid green;
+}
+
+.product-detail-image {
+  width: 50%;
+  padding: 10px;
+}
+
+.product-detail-info {
+  width: 50%;
+  /* padding: 10px; */
+  margin-bottom: 20px;
+}
+
+.product-detail-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-detail-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: bold;
+  color: #f26101;
+}
+
+.product-detail-status {
+  margin-bottom: 10px;
+  color: #f26101;
+  font-weight: bold;
+}
+.product-detail-variants,
+.product-detail-color {
+  margin-bottom: 10px;
+
+  /* font-weight: bold; */
+}
+
+.product-detail-variants span,
+.product-detail-color span {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 18px;
+}
+.variants-option,
+.color-option {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+.variants-option input,
+.color-option input {
+  margin-top: 10px;
+  font-size: 28px;
+  width: 20%;
+  height: 20%;
+}
+
+.variants-option label,
+.color-option label {
+  margin-left: 10px;
+  margin-top: 10px;
+
+  font-size: 18px;
+}
+
+.product-detail-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.product-detail-quantity input {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.product-detail-quantity button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

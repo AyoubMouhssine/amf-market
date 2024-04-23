@@ -1,0 +1,168 @@
+/* style for regiser as seller */
+body {
+    background-color: #D9E8F5;
+}
+
+.registe-seller {
+    background-color:white;
+    width: 550px;
+    text-align: center;
+    border-radius: 22px;
+    height: 700px;
+    margin-left: 350px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+
+.form-group {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.label-group {
+    display: flex;
+    margin-left: 50px;
+    padding: 10px;
+    font-size: 18px;
+
+
+}
+
+.input-group {
+    border-radius: 5px;
+    width: 350px;
+    height: 32px;
+    border: 1px solid #7b7b7b;
+}
+.input-group:focus{
+    outline: 2px solid  #F26101;
+
+
+}
+
+.register-seller-botton {
+    background-color: #F26101;
+    border: 1px solid #F26101;
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;
+    margin: 20px ; 
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+p {
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+p a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #F26101;
+}
+
+.link-register {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 0 100px;
+    width: 350px;
+
+
+}
+
+.link-register a {
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+
+.link-register a:active {
+
+    color: #F26101;
+}
+
+.link-register .link-register-seller {
+    color: #F26101;
+
+}
+
+.register-seller-botton a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+
+/* style for login seller */
+
+
+.login-seller{
+    background-color:white;
+    width: 550px;
+    text-align: center;
+    border-radius: 22px;
+    height: 350px;
+    margin-left: 350px;
+    box-shadow: 5px 5px 5px grey;
+}
+.login-seller-botton{
+    background-color: #F26101;
+    border: 1px solid #F26101;
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px ;
+}
+
+/* style for create store  */
+
+.create-seller-store{
+    background-color:white;
+    width: 550px;
+    text-align: center;
+    border-radius: 22px;
+    height: 450px;
+    margin-top: 20px;
+    padding:7px;
+    margin-left: 350px;
+    box-shadow: 5px 5px 5px grey;
+}
+.create-seller-store h2{
+    width: 400px;
+    margin-left: 100px;
+}
+
+.form-group .input-description{
+    border-radius: 5px;
+    width: 400px;
+    height: 150px;
+    margin-left: 90px;
+   
+}
+.create-store-botton{
+    background-color: #F26101;
+    border: 1px solid #F26101;
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;
+    margin: 20px ; 
+    margin-top: 150px;
+    margin-left: 50px;
+    font-size: 16px;
+    font-weight: bold;
+}

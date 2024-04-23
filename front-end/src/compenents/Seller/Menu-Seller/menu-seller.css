@@ -1,0 +1,34 @@
+.menu-seller{
+    background-color: #304269;
+    width: 15%;
+    height: 800px;
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-top: 82px;
+    
+}
+
+.dropdown-menu-seller{
+    padding: 25px;
+}
+.dropdown-menu-seller li{
+    height: 30px;
+    list-style: none;
+    margin-top: 15px;
+}
+ .dropdown-menu-seller .dropdown-item-seller{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-style: italic;
+   
+}
+.dropdown-menu-seller .dropdown-item-seller:hover {
+    color:#F26101;
+  }
+.dropdown-menu-seller .dropdown-item-seller:focus {
+    color:#F26101;
+  }

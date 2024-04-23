@@ -1,0 +1,240 @@
+* {
+  box-sizing: 0;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background-color: #d9e8f5;
+}
+.createproduct {
+  margin: 120px 0 0 350px;
+}
+.product-info {
+  background-color: white;
+  width: 550px;
+  text-align: center;
+  border-radius: 22px;
+  height: 470px;
+  margin-left: 350px;
+  /* margin-top: 50px; */
+
+  box-shadow: 5px 5px 5px grey;
+}
+
+.form-group {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  height: 65px;
+}
+
+.label-product-group {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.input-product-group {
+  border: 1px solid #c1c1c197;
+  border-radius: 5px;
+  width: 400px;
+  height: 35px;
+  display: block;
+  margin: 5px 0 0 90px;
+}
+.input-product-group:focus {
+  outline: 2px solid #f26101;
+}
+
+.form-group div {
+  display: flex;
+  justify-content: center;
+  margin-top: 140px;
+  margin-right: 130px;
+  gap: 80px;
+  height: 80px;
+}
+.form-group div input {
+  width: 150px;
+}
+.input-product-description {
+  margin: 5px 0 0 70px;
+  display: block;
+  border: 1px solid #c1c1c197;
+  border-radius: 5px;
+  width: 400px;
+  height: 150px;
+}
+.input-product-description:focus {
+  outline: 2px solid #f26101;
+}
+.label-product-description {
+  display: block;
+  margin-left: 20px;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.image-info,
+.variant-info {
+  background-color: white;
+  width: 550px;
+  text-align: center;
+  border-radius: 22px;
+  height: 300px;
+  margin-left: 350px;
+  margin-top: 30px;
+  box-shadow: 5px 5px 5px grey;
+  border: 1px solid rgb(255, 255, 255);
+}
+.variant-info {
+  height: 620px;
+  margin-bottom: 130px;
+}
+.image-info .image-group,
+.variant-group {
+  margin-top: 30px;
+  margin-left: 13px;
+  display: block;
+  border: 1.5px solid rgb(155, 155, 155);
+  border-radius: 5px;
+  height: 200px;
+  width: 480px;
+  padding: 20px;
+}
+.image-group .label-image,
+.label-variant,
+.label-variant-option {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: -10px;
+}
+.image-group .input-image,
+.input-variant,
+.input-variant-option {
+  border-radius: 5px;
+  height: 21px;
+  width: 94px;
+  margin-left: 330px;
+  background-color: #f26101;
+  /* display: none; */
+}
+/* .button-image{
+    border-radius: 5px;
+    height: 30px;
+    width: 140px;
+    margin-left: 100px;
+    font-weight: bold;
+    background-color: #F26101;
+} */
+hr {
+  width: 520px;
+  margin-left: -21px;
+  margin-top: 10px;
+  border: 1px solid #070707;
+}
+
+.variant-group {
+  height: 220px;
+}
+.input-variant {
+  accent-color: #f26101;
+}
+.variant-group .variant-option {
+  border: 1px solide red;
+  margin-top: 40px;
+  background-color: #d9d8d88e;
+  height: 100px;
+  width: 450px;
+  margin-left: 20px;
+  display: block;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px grey;
+}
+.label-variant-option {
+  display: block;
+  margin: 30px 0 0 10px;
+  width: 100px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.input-variant-option {
+  border-radius: 5px;
+  width: 300px;
+  height: 35px;
+  display: block;
+  margin: 2px 0 0 50px;
+  background-color: white;
+  border: 1px solid #b0b0b0;
+}
+.input-variant-option:hover {
+  outline: 2px solid #f26101;
+}
+.button-variant {
+  margin: 10px 0 0 15px;
+  width: 450px;
+  height: 27px;
+  background-color: #f26101;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.value-group {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.value-group button {
+  margin-top: 2px;
+  font-size: 29px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #c9c9c993;
+  border-radius: 90px;
+}
+.value-group button:hover {
+  background-color: #f26101;
+}
+.footer-seller {
+  background-color: white;
+  width: 85%;
+  height: 50px;
+  margin-left: 15%;
+  padding: 7px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: -3px -3px 10px grey;
+}
+.footer-seller button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100px;
+  height: 40px;
+  margin-left: 85%;
+  margin-top: 5px;
+  color: white;
+  background-color: #f26101;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #c2c2c28c;
+  border-radius: 10px;
+}
+
+.footer-seller button:hover {
+  background-color: white;
+  border: 1px solid #f26101;
+  color: #f26101;
+}
