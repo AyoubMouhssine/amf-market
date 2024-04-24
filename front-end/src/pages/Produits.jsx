@@ -12,7 +12,7 @@ const Produits = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchProduits());
+    dispatch(fetchProduits({ page: 1, searchQuery: "" }));
   }, [dispatch]);
 
   const handlePageChange = (newPage) => {

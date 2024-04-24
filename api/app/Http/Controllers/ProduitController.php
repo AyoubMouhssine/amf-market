@@ -26,14 +26,28 @@ class ProduitController extends Controller
     {
         //
     }
-    public function index()
-    {
-        // dd(Produit::with('store.vendeur', 'categorie', 'medias')->paginate(6));
-        return response()->json([
-            "message" => "success",
-            "data" => new ProduitsCollection(Produit::with('store.vendeur', 'categorie', 'medias')->paginate(28))
-        ]);
+
+public function index(Request $request)
+{
+    $query = Produit::with('store.vendeur', 'categorie', 'medias');
+
+    if ($request->has('search_query')) {
+        $searchQuery = $request->input('search_query');
+        $query->where('nom', 'like', "%$searchQuery%");
     }
+
+    if($request->has('categorie')){
+        $categorie = $request->input('categorie');
+        $query = Categorie::findOrFail($categorie)->produits();
+    }
+
+    $produits = $query->paginate(28);
+
+    return response()->json([
+        "message" => "success",
+        "data" => new ProduitsCollection($produits)
+    ]);
+}
 
 
     public function show(Produit $produit)
@@ -77,5 +91,14 @@ class ProduitController extends Controller
             "message" => "success",
             "images" => new MediaCollection(Media::all())
         ]);
+    }
+
+    public function produitsByCategorie($categorie){
+             $produits = Categorie::findOrFail($categorie)->produits()->paginate(28);
+
+    return response()->json([
+        "message" => "success",
+        "data" => new ProduitsCollection($produits)
+    ]);
     }
 }

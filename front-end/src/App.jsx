@@ -11,6 +11,7 @@ import CreateProduct from "./compenents/Seller/Seller-Product/CreateProduct";
 import Layoyt from "./compenents/Seller/Layout";
 import DashboardSeller from "./compenents/Seller/Dashboard";
 import Produits from "./pages/Produits.jsx";
+import SearchResults from "./compenents/SearchResults/SearchResults.jsx";
 const App = () => {
   return (
     <>
@@ -19,6 +20,7 @@ const App = () => {
           <Route index element={<Produits />} />
           <Route path="/product/:id/detail" element={<ProductDetail />} />
         </Route>
+        <Route path="/products" element={<SearchResults />} />
         <Route path="/user/register" element={<RegisterUser />} />
         <Route path="/vendeur/register" element={<RegisterSeller />} />
         <Route path="/user/login" element={<LoginUser />} />

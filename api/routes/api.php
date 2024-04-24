@@ -19,7 +19,6 @@ Route::post('/vendeur/register', [AuthVendeurController::class, 'register']);
 
 
 
-
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/vendeur', [VendeurController::class, 'vendeur']);
     Route::post('/vendeur/logout', [AuthVendeurController::class, 'logout']);
@@ -53,4 +52,6 @@ Route::post('/produit/image', function (Request $request) {
 
 Route::get('/produits/images', [ProduitController::class, 'images']);
 Route::apiResource('/produits', ProduitController::class);
+Route::get('/produits/categorie/{categorie}', [ProduitController::class, 'produitsByCategorie']);
+
 Route::apiResource('/categories', CategoieController::class);
