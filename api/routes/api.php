@@ -30,28 +30,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 
-// Route::middleware(['auth:sanctum'])->group(function () {
-// });
 
 
+Route::post('/produit/image', function (Request $request) {
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
 
+    $image = $request->file('image');
+    $path = $image->store('public/images', ['public']);
+    Media::create([
+        "produit_produitId" => $request->produit_produitId,
+        "url" => $path
+    ]);
 
-// Route::post('/produit/image', function (Request $request) {
-//     $request->validate([
-//         'image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Adjust validation rules as needed
-//     ]);
-
-//     $image = $request->file('image');
-//     $path = $image->store('public/images', ['public']);
-//     Media::create([
-//         "produit_produitId" => $request->produit_produitId,
-//         "url" => $path
-//     ]);
-
-//     return response()->json([
-//         "message" => "success",
-//     ]);
-// });
+    return response()->json([
+        "message" => "success",
+    ]);
+});
 
 
 

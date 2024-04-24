@@ -1,10 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import "./seller.css";
 import logo from "../../images/logo1.png";
-import { login } from "../../../lib/axios";
 import { useNavigate } from "react-router-dom";
-
+import login from "../../../lib/helpers/login";
 function LoginSeller() {
   const [data, setData] = useState({
     email: "",
@@ -21,11 +19,10 @@ function LoginSeller() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await login("vendeur", data);
-      if (user) {
+      const response = await login("vendeur", data);
+      if (response.message === "success") {
         navigate("/seller");
       }
-      console.log("Authenticated user:", user);
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -36,10 +33,10 @@ function LoginSeller() {
       <div className="login-seller ">
         <div className="link-register">
           <p>
-            <a href="/user/login"> Login as Uesr</a>
+            <a href="/user/login"> Login as User</a>
           </p>
           <p>
-            <a href="/vondeur/login" className="link-register-seller">
+            <a href="/vendeur/login" className="link-register-seller">
               Login as Seller
             </a>
           </p>
@@ -76,7 +73,7 @@ function LoginSeller() {
             Login
           </button>
           <p>
-            New in our platform ? <a href="/vondeur/register">Register</a>
+            New in our platform ? <a href="/vendeur/register">Register</a>
           </p>
         </form>
       </div>

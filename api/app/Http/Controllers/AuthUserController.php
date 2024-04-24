@@ -32,7 +32,7 @@ class AuthUserController extends Controller
         return $this->success([
             'user' => $user,
             'token' => $token
-        ]);
+        ], 'success', 200);
     }
 
     public function register(StoreUserRequest $request)
@@ -56,7 +56,7 @@ class AuthUserController extends Controller
                 'email' => $validatedData['email']
             ],
             'token' => $token
-        ], "user registartion avec success");
+        ], "success", 200);
     }
 
 
@@ -73,6 +73,6 @@ class AuthUserController extends Controller
 
 
         $user->tokens()->delete();
-        return response()->json("user logout");
+        return $this->success('', "success", 200);
     }
 }

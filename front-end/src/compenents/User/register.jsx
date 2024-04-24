@@ -1,19 +1,38 @@
 import React, { useState } from "react";
 import logo from "../images/logo1.png";
 import "./user.css";
+import { useNavigate } from "react-router-dom";
+import register from "../../lib/helpers/register";
 
-function RegisterUser({ getData }) {
-  const [data, setData] = useState(getData);
-  const [nom, setnom] = useState("");
-  const [prenom, setprenom] = useState("");
-  const [tel, settel] = useState("");
-  const [address, setaddress] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+function RegisterUser() {
+  const [data, setData] = useState({
+    nom: "",
+    prenom: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    tel: "",
+    adresse: "",
+  });
 
-  const handleAdd = (e) => {
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const name = e.target["name"];
+    const value = e.target["value"];
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    getData({ nom, prenom, tel, address, email, password });
+    try {
+      const response = await register("user", data);
+      if (response.message === "success") {
+        navigate("/user/login");
+      }
+    } catch (error) {
+      console.log("An error occurred:", error);
+    }
   };
   return (
     <>
@@ -23,69 +42,68 @@ function RegisterUser({ getData }) {
         <div className="link-register">
           <p>
             <a href="/user/register" className="link-register-user">
-              {" "}
               Resgister as Uesr
             </a>
           </p>
           <p>
-            <a href="/vondeur/register "> Resgister as Seller</a>
+            <a href="/vendeur/register "> Resgister as Seller</a>
           </p>
         </div>
-        <form action="/register" method="post" onSubmit={handleAdd}>
-          <div class="form-group">
-            <label for="firstName" className="label-group">
+        <form method="post" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="firstName" className="label-group">
               First Name:
             </label>
             <input
               type="text"
               id="firstName"
-              name="firstName"
+              name="nom"
               required
-              onChange={(e) => setnom(e.target.value)}
+              onChange={(e) => handleChange(e)}
               className="input-user-group"
             />
           </div>
-          <div class="form-group">
-            <label for="lastName" className="label-group">
+          <div className="form-group">
+            <label htmlFor="lastName" className="label-group">
               Last Name:
             </label>
             <input
               type="text"
               id="lastName"
-              name="lastName"
+              name="prenom"
               required
-              onChange={(e) => setprenom(e.target.value)}
+              onChange={(e) => handleChange(e)}
               className="input-user-group"
             />
           </div>
-          <div class="form-group">
-            <label for="phone" className="label-group">
+          <div className="form-group">
+            <label htmlFor="phone" className="label-group">
               Phone:
             </label>
             <input
               type="tel"
               id="phone"
-              name="phone"
+              name="tel"
               required
-              onChange={(e) => settel(e.target.value)}
+              onChange={(e) => handleChange(e)}
               className="input-user-group"
             />
           </div>
-          <div class="form-group">
-            <label for="address" className="label-group">
+          <div className="form-group">
+            <label htmlFor="address" className="label-group">
               Adresse:
             </label>
             <input
               type="text"
               id="address"
-              name="address"
+              name="adresse"
               required
-              onChange={(e) => setaddress(e.target.value)}
+              onChange={(e) => handleChange(e)}
               className="input-user-group"
             />
           </div>
-          <div class="form-group">
-            <label for="email" className="label-group">
+          <div className="form-group">
+            <label htmlFor="email" className="label-group">
               Email:
             </label>
             <input
@@ -93,12 +111,12 @@ function RegisterUser({ getData }) {
               id="email"
               name="email"
               required
-              onChange={(e) => setemail(e.target.value)}
+              onChange={(e) => handleChange(e)}
               className="input-user-group"
             />
           </div>
-          <div class="form-group">
-            <label for="password" className="label-group">
+          <div className="form-group">
+            <label htmlFor="password" className="label-group">
               Password:
             </label>
             <input
@@ -106,7 +124,20 @@ function RegisterUser({ getData }) {
               id="password"
               name="password"
               required
-              onChange={(e) => setpassword(e.target.value)}
+              onChange={(e) => handleChange(e)}
+              className="input-user-group"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="assword_confirmation" className="label-group">
+              Confirmation:
+            </label>
+            <input
+              type="password"
+              id="assword_confirmation"
+              name="password_confirmation"
+              required
+              onChange={(e) => handleChange(e)}
               className="input-user-group"
             />
           </div>

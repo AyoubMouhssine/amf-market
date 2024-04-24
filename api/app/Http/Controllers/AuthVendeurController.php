@@ -28,7 +28,7 @@ class AuthVendeurController extends Controller
         return $this->success([
             'vendeur' => $vendeur,
             'token' => $token
-        ]);
+        ], 'success', 200);
     }
 
     public function register(StoreVendeurRequest $request)
@@ -55,7 +55,7 @@ class AuthVendeurController extends Controller
                 'email' => $validatedData['email']
             ],
             'token' => $token
-        ]);
+        ], "success", 200);
     }
 
     public function logout(Request $request)
@@ -64,6 +64,6 @@ class AuthVendeurController extends Controller
 
         $user->tokens()->delete();
 
-        return response()->json("user logout");
+        return $this->success('', "success", 200);
     }
 }

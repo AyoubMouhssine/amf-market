@@ -1,15 +1,14 @@
-import React from "react";
-import AuthVendeur from "../../../lib/helpers/AuthVendeur";
+import useCheckAuth from "../../../lib/helpers/useCheckAuth";
 
 function DashboardSeller() {
-  const [vendeur, setVendeur] = AuthVendeur();
-  console.log(vendeur);
+  const user = useCheckAuth("vendeur");
+
   return (
     <div>
       <h2
         style={{ textAlign: "center", marginLeft: "150px", marginTop: "50px" }}
       >
-        Welcome back {vendeur.nom} {vendeur.prenom}
+        Welcome back {user?.nom} {user?.prenom}
       </h2>
     </div>
   );

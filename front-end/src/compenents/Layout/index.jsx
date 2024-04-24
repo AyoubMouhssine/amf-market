@@ -4,13 +4,23 @@ import Menu from "../Menu";
 import Footer from "../Footer";
 import "./layout.css";
 import Carousel from "../Carousel";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchimages } from "../../store/slices/imagesSlice";
+import { useEffect } from "react";
 function index() {
+  const { images } = useSelector((state) => state.images);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchimages());
+  }, [dispatch]);
+
   return (
     <>
       <div className="main">
         <Menu />
         <div className="content">
-          <Carousel />
+          <Carousel images={images} />
         </div>
       </div>
       <Outlet />

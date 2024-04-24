@@ -1,5 +1,4 @@
 import React from "react";
-//
 import ProductDetail from "./compenents/Product-Detail";
 import { Route, Routes } from "react-router-dom";
 import RegisterSeller from "./compenents/Seller/Seller-Auth/register.jsx";
@@ -21,10 +20,10 @@ const App = () => {
           <Route path="/product/:id/detail" element={<ProductDetail />} />
         </Route>
         <Route path="/user/register" element={<RegisterUser />} />
-        <Route path="/vondeur/register" element={<RegisterSeller />} />
+        <Route path="/vendeur/register" element={<RegisterSeller />} />
         <Route path="/user/login" element={<LoginUser />} />
-        <Route path="/vondeur/login" element={<LoginSeller />} />
-        <Route path="/vondeur/create/store" element={<CreateStore />} />
+        <Route path="/vendeur/login" element={<LoginSeller />} />
+        <Route path="/vendeur/create/store" element={<CreateStore />} />
         <Route path="/seller" element={<Layoyt />}>
           <Route index element={<DashboardSeller />} />
           <Route path="/seller/dashboard" element={<DashboardSeller />} />

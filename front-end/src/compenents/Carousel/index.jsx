@@ -2,16 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./carousel.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchimages } from "../../store/slices/imagesSlice";
-import { Link } from "react-router-dom";
 
-const Carousel = () => {
+const Carousel = ({ images }) => {
   const [slide, setSlide] = useState(0);
-  const { images } = useSelector((state) => state.images);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchimages());
-  }, [dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
