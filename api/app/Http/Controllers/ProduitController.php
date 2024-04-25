@@ -100,5 +100,37 @@ public function index(Request $request)
         "message" => "success",
         "data" => new ProduitsCollection($produits)
     ]);
+
+    }
+
+
+    public function reviews(Produit $produit){
+
+        $reviews = $produit->users()->get();
+        $reviewsData = [];
+        foreach ($reviews as $userWithReview) {
+        $reviewData = [
+          'user' => [
+            'userId'=>$userWithReview->userId,
+            'nom' => $userWithReview->nom,
+            'prenom' => $userWithReview->prenom,
+          ],
+            'reviewId'=>$userWithReview->pivot->id,
+            'note' => $userWithReview->pivot->note,
+            'text_avis' => $userWithReview->pivot->text_avis,
+            'date_publication' => $userWithReview->pivot->date_publication,
+        ];
+
+            $reviewsData[] = $reviewData; 
+        }
+
+
+        return response()->json([
+            "message" => "success",
+            "data" =>  $reviewsData
+        ]);    
     }
 }
+
+
+

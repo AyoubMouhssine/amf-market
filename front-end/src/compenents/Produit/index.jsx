@@ -15,7 +15,6 @@ export default function Produit(props) {
           alt={title}
           className="product-image"
         />
-        {/* <Carousel /> */}
         <Card.Body className="card-body">
           <Card.Title className="product-title">{title}</Card.Title>
           <Card.Text className="product-price">{price} Dhs</Card.Text>

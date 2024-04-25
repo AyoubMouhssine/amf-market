@@ -1,0 +1,19 @@
+.order-details {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-details h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.order-details p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}

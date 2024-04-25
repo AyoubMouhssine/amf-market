@@ -14,6 +14,7 @@ class ProduitCollection extends JsonResource
             'nom' => $this->nom,
             'prix' => $this->prix,
             'stock' => $this->stock,
+            'description'=>$this->description,
             'store' => [
                 'nom' => $this->store->nom_store,
                 'description' => $this->store->description,

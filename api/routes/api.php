@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoieController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\VendeurController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,9 +50,15 @@ Route::post('/produit/image', function (Request $request) {
 });
 
 
-
+Route::post('/produits/{produit}/reviews',[ReviewController::class, 'createReview']);
 Route::get('/produits/images', [ProduitController::class, 'images']);
+
+Route::get('/produits/{produit}/reviews/user/{user}', [ReviewController::class, 'checkUserReview']);
+
 Route::apiResource('/produits', ProduitController::class);
 Route::get('/produits/categorie/{categorie}', [ProduitController::class, 'produitsByCategorie']);
-
+Route::get('/produits/{produit}/reviews', [ProduitController::class, 'reviews']);
 Route::apiResource('/categories', CategoieController::class);
+
+
+

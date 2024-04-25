@@ -12,20 +12,22 @@ import Layoyt from "./compenents/Seller/Layout";
 import DashboardSeller from "./compenents/Seller/Dashboard";
 import Produits from "./pages/Produits.jsx";
 import SearchResults from "./compenents/SearchResults/SearchResults.jsx";
+import ShowCart from "./compenents/ShowCart/ShowCart.jsx";
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Produits />} />
-          <Route path="/product/:id/detail" element={<ProductDetail />} />
         </Route>
+        <Route path="/product/:id/detail" element={<ProductDetail />} />
         <Route path="/products" element={<SearchResults />} />
         <Route path="/user/register" element={<RegisterUser />} />
         <Route path="/vendeur/register" element={<RegisterSeller />} />
         <Route path="/user/login" element={<LoginUser />} />
         <Route path="/vendeur/login" element={<LoginSeller />} />
         <Route path="/vendeur/create/store" element={<CreateStore />} />
+        <Route path="/order" element={<ShowCart />} />
         <Route path="/seller" element={<Layoyt />}>
           <Route index element={<DashboardSeller />} />
           <Route path="/seller/dashboard" element={<DashboardSeller />} />

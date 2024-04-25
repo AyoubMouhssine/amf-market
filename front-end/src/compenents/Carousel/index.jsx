@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./carousel.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchimages } from "../../store/slices/imagesSlice";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = ({ images }) => {
   const [slide, setSlide] = useState(0);
@@ -15,8 +16,9 @@ const Carousel = ({ images }) => {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  const navigate = useNavigate();
   const handleClick = (id) => {
-    console.log("clicked ", id);
+    navigate(`/product/${id}/detail`);
   };
   return (
     <div className="carousel">

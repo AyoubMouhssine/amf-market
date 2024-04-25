@@ -1,5 +1,7 @@
 import { axios } from "../axios";
-const logout = async (userType, token) => {
+import { clearCart } from "../../store/slices/cartSlice";
+
+const logout = async (dispatch, userType, token) => {
   try {
     const res = await axios.post(
       `/${userType}/logout`,
@@ -13,6 +15,7 @@ const logout = async (userType, token) => {
     );
     sessionStorage.removeItem("auth_token");
     sessionStorage.removeItem("current_user");
+    dispatch(clearCart());
     return res.data;
   } catch (error) {
     console.log(error);

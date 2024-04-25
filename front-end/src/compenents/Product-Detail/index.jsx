@@ -1,52 +1,149 @@
-import React from 'react';
-import './product-detail.css';
-import Header from '../Header';
-import Menu from '../Menu/index'
-
+import { axios } from "../../lib/axios.jsx";
+import React, { useEffect, useState } from "react";
+import "./product-detail.css";
+import Header from "../Header";
+import Footer from "../Footer";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../Loader";
+import Produit from "../Produit";
+import Review from "../Review/Review.jsx";
+import AddReviewForm from "../AddReviewForm/AddReviewForm.jsx";
+import { fetchProduits } from "../../store/slices/produitsSlice";
+import { fetchReviews, addReview } from "../../store/slices/reviewSlice";
+import {
+  addItem,
+  selectCartItems,
+  selectCartTotalPrice,
+} from "../../store/slices/cartSlice.jsx";
 
 const ProductDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const [hasReviewed, setHasReviewed] = useState(false);
+
+  useEffect(() => {
+    const checkUserReview = async () => {
+      const currentUser = JSON.parse(sessionStorage.getItem("current_user"));
+      if (currentUser) {
+        try {
+          const response = await axios.get(
+            `/produits/${id}/reviews/user/${currentUser.user.userId}`
+          );
+          setHasReviewed(response.data.data.length > 0);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+    checkUserReview();
+    dispatch(fetchProduits({ page: 1, searchQuery: "" }));
+    dispatch(fetchReviews(id));
+  }, [id, dispatch]);
+
+  const { produits } = useSelector((state) => state.produits);
+  const produit = useSelector((state) =>
+    state.produits.produits.find((p) => p.id === +id)
+  );
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const { reviews, loading, error } = useSelector((state) => state.reviews);
+  const currentUser = JSON.parse(sessionStorage.getItem("current_user"));
+
+  const handleAddReview = async (review) => {
+    try {
+      const response = await axios.post(`/produits/${id}/reviews`, {
+        user_userId: currentUser.user.userId,
+        ...review,
+      });
+      setHasReviewed(true);
+      dispatch(addReview(response.data.data));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
-     
-      <div className="product-detail-container">
-        <div className="product-detail-image">
-          <img src="https://placehold.it/400x400" alt="Product" />
-        </div>
-        <div className="product-detail-info">
-          <div className="product-detail-title">Cotton Men Black Plain T Shirt</div>
-          <div className="product-detail-price">
-            <span className="price">149 dh</span>
+      <Header />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="product-detail-container">
+            <div className="product-detail-image">
+              <img
+                src={
+                  produit?.medias.length > 0
+                    ? produit?.medias[0].image
+                    : "default-image.jpg"
+                }
+                alt="Product"
+              />
+            </div>
+            <div className="product-detail-info">
+              <div className="product-detail-title">{produit?.nom}</div>
+              <div className="product-detail-price">
+                <span className="price">{produit?.prix} dh</span>
+              </div>
+              <div className="product-detail-status">
+                {produit?.stock > 0 ? "In Stock" : "out of stock"}
+              </div>
+              <div className="product-detail-description">
+                <p>{produit?.description}</p>
+              </div>
+              <div className="product-detail-quantity">
+                <button>Order Now</button>
+              </div>
+              <div className="product-detail-quantity">
+                <button
+                  type="button"
+                  onClick={() => dispatch(addItem(produit))}
+                >
+                  Add Cart
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="product-detail-status">In Stock</div>
-          <div className="product-detail-variants">
-            <span>Variants:</span>
-            <ul className='variants-option'>
-              <input type="radio" id="S" name="variant" value="S" checked/>
-              <label for="S">S</label><br />
-              <input type="radio" id="l" name="variant" value="l" />
-              <label for="l">L</label><br />
-              <input type="radio" id="xl" name="variant" value="xl" />
-              <label for="xl">XL</label>
-            </ul>
+          <div className="related-products">
+            <h2>Related Products</h2>
+            <div className="products-list">
+              {produits.map((product) => (
+                <Produit
+                  key={product.id}
+                  images={product.medias}
+                  title={product.nom}
+                  price={product.prix}
+                  link={`/product/${product.id}/detail`}
+                />
+              ))}
+            </div>
           </div>
-          <div className="product-detail-color">
-            <span>Color:</span>
-            <ul className='color-option'>
-              <input type="radio" id="black" name="color" value="black" checked />
-              <label for="black">black</label><br />
-              <input type="radio" id="pink" name="color" value="pink" />
-              <label for="l">pink</label><br />
-              <input type="radio" id="maroon" name="color" value="maroon" />
-              <label for="maroon">maroon</label>
-            </ul>
+          <div className="reviews-container">
+            {isAuthenticated ? (
+              <>
+                {hasReviewed ? (
+                  <h2 style={{ textAlign: "center" }}>
+                    You have already reviewed this product.
+                  </h2>
+                ) : (
+                  <AddReviewForm onAddReview={handleAddReview} />
+                )}
+              </>
+            ) : (
+              <h2 style={{ textAlign: "center" }}>
+                Espace avis réservé aux utilisateurs connectés
+              </h2>
+            )}
+            <h2>Reviews</h2>
+            <div className="reviews-list">
+              {reviews.map((review) => (
+                <Review key={review.reviewId} review={review} />
+              ))}
+            </div>
           </div>
-          <div clasName="product-detail-quantity">
-            <button>Order Now</button>
-            <span>-</span> 1 <span>+</span> 
-          </div>
-        </div>
-      </div>
-      
+        </>
+      )}
+      <Footer />
     </>
   );
 };

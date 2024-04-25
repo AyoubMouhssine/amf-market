@@ -19,7 +19,7 @@ function LoginUser() {
       });
 
       if (response.message === "success") {
-        navigate("/");
+        navigate(-1);
       }
     } catch (error) {
       console.error("Login failed:", error);

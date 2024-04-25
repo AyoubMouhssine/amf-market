@@ -24,9 +24,12 @@ class User extends Authenticatable
     protected $fillable = [
         'nom', 'prenom', 'email', 'password', 'tel', 'adresse'
     ];
-    public function reviews() {
-        return $this->hasMany(Review::class);
-    }
+  public function produits()
+  {
+    return $this->belongsToMany(Produit::class)->withPivot('id','note', 'text_avis', 'date_publication');
+  }    
+
+
     public function commandes() {
         return $this->hasMany(Commande::class);
     }

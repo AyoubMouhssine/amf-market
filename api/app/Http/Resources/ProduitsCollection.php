@@ -16,6 +16,7 @@ class ProduitsCollection extends ResourceCollection
                     'nom' => $produit->nom,
                     'prix' => $produit->prix,
                     'stock' => $produit->stock,
+                    'description'=>$produit->description,
                     'categorie' => $produit->categorie->nom,
                     'store' => [
                         'nom' => $produit->store->nom_store,

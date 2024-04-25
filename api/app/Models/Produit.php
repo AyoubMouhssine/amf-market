@@ -31,11 +31,10 @@ class Produit extends Model
     }
     public function categorie()
     {
-        // return $this->belonsTo(Categorie::class,);
         return $this->belongsTo(Categorie::class, 'categorie_categorieId');
     }
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
+  public function users()
+  {
+    return $this->belongsToMany(User::class)->withPivot('id','note', 'text_avis', 'date_publication');
+  }
 }
