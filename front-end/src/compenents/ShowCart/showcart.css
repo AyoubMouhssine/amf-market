@@ -1,14 +1,11 @@
-.show-cart-container {
-  height: 100vh;
-}
-
 .show-cart {
   margin-top: 150px;
-  padding: 1rem;
+  padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .show-cart h3 {

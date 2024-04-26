@@ -2,15 +2,17 @@ import React from "react";
 import "./menu-seller.css";
 import { useNavigate } from "react-router-dom";
 import logout from "../../../lib/helpers/logout";
+import { useDispatch } from "react-redux";
 const MenuSeller = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleLogout = async () => {
     try {
       const authToken = sessionStorage.getItem("auth_token");
       if (!authToken) {
         return;
       }
-      const response = await logout("vendeur", authToken);
+      const response = await logout(dispatch, "vendeur", authToken);
       if (response.message === "success") {
         navigate("/");
       }

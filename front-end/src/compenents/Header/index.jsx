@@ -139,7 +139,7 @@ const Header = () => {
       const response = await logout(dispatch, "user", authToken);
       if (response.message === "success") {
         dispatch(setAuthStatus(false));
-        navigate('/')
+        // navigate('/')
       }
     } catch (error) {
       console.log(error);

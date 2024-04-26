@@ -7,6 +7,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\VendeurController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CommandeController;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,37 +28,37 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user/logout', [AuthUserController::class, 'logout']);
     Route::post('/vendeur/1/store/create', [StoreController::class, 'create']);
     Route::post('/vendeur/create', [VendeurController::class, 'create']);
+
+
+//commandes
+    Route::apiResource('/commandes', CommandeController::class);
+
+
+//review;
+    Route::post('/produits/{produit}/reviews',[ReviewController::class, 'createReview']);
+
+//check if user has already have review for a given produit
+    Route::get('/produits/{produit}/reviews/user/{user}', [ReviewController::class, 'checkUserReview']);
 });
 
 
-
-
-Route::post('/produit/image', function (Request $request) {
-    $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-    ]);
-
-    $image = $request->file('image');
-    $path = $image->store('public/images', ['public']);
-    Media::create([
-        "produit_produitId" => $request->produit_produitId,
-        "url" => $path
-    ]);
-
-    return response()->json([
-        "message" => "success",
-    ]);
-});
-
-
-Route::post('/produits/{produit}/reviews',[ReviewController::class, 'createReview']);
+//get some images for carousel to display it on home page
 Route::get('/produits/images', [ProduitController::class, 'images']);
 
-Route::get('/produits/{produit}/reviews/user/{user}', [ReviewController::class, 'checkUserReview']);
 
-Route::apiResource('/produits', ProduitController::class);
+
+
+//filter produits by given categorie
 Route::get('/produits/categorie/{categorie}', [ProduitController::class, 'produitsByCategorie']);
+
+//get all reviews for a given produit
 Route::get('/produits/{produit}/reviews', [ProduitController::class, 'reviews']);
+
+//
+Route::apiResource('/produits', ProduitController::class);
+
+
+
 Route::apiResource('/categories', CategoieController::class);
 
 

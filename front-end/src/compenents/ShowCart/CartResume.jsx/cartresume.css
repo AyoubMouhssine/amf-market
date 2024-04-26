@@ -1,19 +1,34 @@
 .order-details {
-  margin: 2rem 0;
-  padding: 1rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 250px;
+  background-color: #f9f9f9;
 }
 
 .order-details h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 22px;
 }
 
 .order-details p {
   margin: 0;
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.order-details button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.order-details button:hover {
+  background-color: #0056b3;
 }

@@ -11,7 +11,7 @@ class Commande extends Model
     protected $primaryKey = 'commandeId';
 
     protected $fillable = [
-       'user_userId','date_commande','prix_total','status'
+       'user_userId','prix_total'
     ];
     public function user() {
         return $this->belonsTo(User::class);

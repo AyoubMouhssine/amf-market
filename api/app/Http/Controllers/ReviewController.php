@@ -17,33 +17,6 @@ public function checkUserReview(Produit $produit, User $user)
 }
 
 
-//  public function createReview(Produit $produit, Request $request)
-// {
-//     $validatedData = $request->validate([
-//         'user_userId' => 'required|integer',
-//         'note' => 'nullable|numeric|between:0,5',
-//         'text_avis' => 'nullable|string',
-//     ]);
-
-//     $user = User::find($validatedData['user_userId']);
-    
-//     if ($user) {
-//         $review = $produit->users()->attach($user, $validatedData);
-
-//         $reviewPivot = $produit->users()->wherePivot('user_userId', $user->userId)->first()->pivot;
-        
-//         return response()->json([
-//             'message' => 'Review created successfully!',
-//             'data' => $reviewPivot->toArray(),
-//         ]);
-//     } else {
-//         return response()->json([
-//             'message' => 'User not found.',
-//             'errors' => ['userId' => ['Invalid user ID']],
-//         ], 422);
-//     }
-// }
-
 public function createReview(Produit $produit, Request $request)
 {
     $validatedData = $request->validate([

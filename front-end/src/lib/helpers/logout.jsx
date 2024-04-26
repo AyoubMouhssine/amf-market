@@ -1,5 +1,6 @@
 import { axios } from "../axios";
 import { clearCart } from "../../store/slices/cartSlice";
+import { setAuthStatus } from "../../store/slices/authSlice";
 
 const logout = async (dispatch, userType, token) => {
   try {
@@ -16,6 +17,7 @@ const logout = async (dispatch, userType, token) => {
     sessionStorage.removeItem("auth_token");
     sessionStorage.removeItem("current_user");
     dispatch(clearCart());
+    dispatch(setAuthStatus(false));
     return res.data;
   } catch (error) {
     console.log(error);

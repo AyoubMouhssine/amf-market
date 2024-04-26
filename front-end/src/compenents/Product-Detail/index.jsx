@@ -11,11 +11,7 @@ import Review from "../Review/Review.jsx";
 import AddReviewForm from "../AddReviewForm/AddReviewForm.jsx";
 import { fetchProduits } from "../../store/slices/produitsSlice";
 import { fetchReviews, addReview } from "../../store/slices/reviewSlice";
-import {
-  addItem,
-  selectCartItems,
-  selectCartTotalPrice,
-} from "../../store/slices/cartSlice.jsx";
+import { addItem } from "../../store/slices/cartSlice.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -25,10 +21,17 @@ const ProductDetail = () => {
   useEffect(() => {
     const checkUserReview = async () => {
       const currentUser = JSON.parse(sessionStorage.getItem("current_user"));
-      if (currentUser) {
+      const token = sessionStorage.getItem("auth_token");
+      if (currentUser && token) {
         try {
           const response = await axios.get(
-            `/produits/${id}/reviews/user/${currentUser.user.userId}`
+            `/produits/${id}/reviews/user/${currentUser.user.userId}`,
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
           );
           setHasReviewed(response.data.data.length > 0);
         } catch (err) {
@@ -51,10 +54,19 @@ const ProductDetail = () => {
 
   const handleAddReview = async (review) => {
     try {
-      const response = await axios.post(`/produits/${id}/reviews`, {
-        user_userId: currentUser.user.userId,
-        ...review,
-      });
+      const response = await axios.post(
+        `/produits/${id}/reviews`,
+        {
+          user_userId: currentUser.user.userId,
+          ...review,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`,
+          },
+        }
+      );
       setHasReviewed(true);
       dispatch(addReview(response.data.data));
     } catch (err) {
@@ -91,9 +103,7 @@ const ProductDetail = () => {
               <div className="product-detail-description">
                 <p>{produit?.description}</p>
               </div>
-              <div className="product-detail-quantity">
-                <button>Order Now</button>
-              </div>
+
               <div className="product-detail-quantity">
                 <button
                   type="button"
@@ -105,7 +115,7 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className="related-products">
-            <h2>Related Products</h2>
+            <h2>Products</h2>
             <div className="products-list">
               {produits.map((product) => (
                 <Produit
