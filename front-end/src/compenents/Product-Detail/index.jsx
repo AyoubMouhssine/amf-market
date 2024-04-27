@@ -1,5 +1,5 @@
 import { axios } from "../../lib/axios.jsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./product-detail.css";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -17,8 +17,15 @@ const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [hasReviewed, setHasReviewed] = useState(false);
-
+  const [produit, setProduit] = useState({});
   useEffect(() => {
+    const getProduitDetails = async () => {
+      const response = await axios.get(`/produits/${id}`);
+
+      setProduit(response.data.produit);
+    };
+    getProduitDetails();
+
     const checkUserReview = async () => {
       const currentUser = JSON.parse(sessionStorage.getItem("current_user"));
       const token = sessionStorage.getItem("auth_token");
@@ -40,16 +47,14 @@ const ProductDetail = () => {
       }
     };
     checkUserReview();
-    dispatch(fetchProduits({ page: 1, searchQuery: "" }));
+
+    dispatch(fetchProduits({}));
     dispatch(fetchReviews(id));
   }, [id, dispatch]);
 
-  const { produits } = useSelector((state) => state.produits);
-  const produit = useSelector((state) =>
-    state.produits.produits.find((p) => p.id === +id)
-  );
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const { reviews, loading, error } = useSelector((state) => state.reviews);
+  const { produits } = useSelector((state) => state.produits);
   const currentUser = JSON.parse(sessionStorage.getItem("current_user"));
 
   const handleAddReview = async (review) => {
@@ -74,6 +79,8 @@ const ProductDetail = () => {
     }
   };
 
+  useLayoutEffect(() => {}, [id]);
+  // console.log();
   return (
     <>
       <Header />
@@ -83,14 +90,9 @@ const ProductDetail = () => {
         <>
           <div className="product-detail-container">
             <div className="product-detail-image">
-              <img
-                src={
-                  produit?.medias.length > 0
-                    ? produit?.medias[0].image
-                    : "default-image.jpg"
-                }
-                alt="Product"
-              />
+              {produit && produit.medias && produit.medias.length > 0 && (
+                <img src={produit.medias[0].image} alt="Product" />
+              )}
             </div>
             <div className="product-detail-info">
               <div className="product-detail-title">{produit?.nom}</div>

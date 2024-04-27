@@ -2,7 +2,6 @@ import "./footer.css";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import Button from "../Button";
 import {
   faFacebook,
   faTwitter,
@@ -10,12 +9,31 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { axios } from "../../lib/axios";
 function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/subscribe", { email });
+      if (response.statusText === "OK") {
+        alert("You've successfully subscribed to our newsletter!");
+      } else {
+        alert("Failed to subscribe. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error subscribing to newsletter:", error);
+      alert("Failed to subscribe. Please try again later.");
+    }
+  };
   return (
     <footer className="footer">
-      {/* <div className="footer-logo">
-        <img src={logo} alt="logo" />
-      </div> */}
       <div className="footer-container">
         <div className="footer-info">
           <div className="">
@@ -65,9 +83,15 @@ function Footer() {
           <div className="">
             <h3>Newsletter</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            <form action="">
-              <input type="email" name="email" placeholder="Your Email" />
-              {/* <Button Link="/">Signup</Button> */}
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <button>Signup</button>
             </form>
           </div>
         </div>

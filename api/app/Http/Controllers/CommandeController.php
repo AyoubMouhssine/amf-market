@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Commande;
 use App\Models\LigneCommande;
@@ -41,6 +42,7 @@ class CommandeController extends Controller
                 'prix_unitaire' => $cartItem['prix'],
             ]);
         }
+        Mail::to($request->user()->email)->send(new OrderConfirmation($commande));
 
         return response()->json(['message' => 'Command created successfully'], 201);
    

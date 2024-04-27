@@ -14,9 +14,9 @@ class LigneCommande extends Model
        'commande_commandeId','produit_produitId','quantite','prix_unitaire'
     ];
     public function commande() {
-        return $this->belonsTo(Commande::class);
+        return $this->belongsTo(Commande::class);
     }
     public function produit() {
-        return $this->belonsTo(Produit::class);
+        return $this->belongsTo(Produit::class);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\VendeurController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\SubscriptionController;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -62,4 +63,5 @@ Route::apiResource('/produits', ProduitController::class);
 Route::apiResource('/categories', CategoieController::class);
 
 
-
+//subscribe
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);

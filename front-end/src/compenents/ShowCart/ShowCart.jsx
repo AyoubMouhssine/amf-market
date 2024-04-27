@@ -55,7 +55,7 @@ const ShowCart = () => {
       );
       alert("Commande passée avec succès! 🎉");
       dispatch(clearCart());
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

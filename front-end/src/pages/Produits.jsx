@@ -5,6 +5,7 @@ import Produit from "../compenents/Produit";
 import Loader from "../compenents/Loader";
 import "./produits.css";
 import Pagination from "../compenents/Pagination";
+import exempleImage from "../compenents/images/photo4.jpg";
 const Produits = () => {
   const dispatch = useDispatch();
   const { produits, currentPage, totalPages, isLoading, error } = useSelector(
@@ -17,7 +18,7 @@ const Produits = () => {
 
   const handlePageChange = (newPage) => {
     dispatch(onPageChange(newPage));
-    dispatch(fetchProduits(newPage));
+    dispatch(fetchProduits({ page: newPage, searchQuery: "" }));
   };
 
   return (
@@ -33,7 +34,9 @@ const Produits = () => {
               <Produit
                 key={produit.id}
                 image={
-                  produit.medias.length !== 0 ? produit.medias[0]["image"] : ""
+                  produit.medias.length !== 0
+                    ? produit.medias[0]["image"]
+                    : exempleImage
                 }
                 description="none"
                 title={produit.nom}

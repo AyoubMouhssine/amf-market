@@ -13,13 +13,14 @@ class Commande extends Model
     protected $fillable = [
        'user_userId','prix_total'
     ];
+    
     public function user() {
-        return $this->belonsTo(User::class);
+        return $this->belongsTo(User::class);
     }
     public function ligneCommandes() {
         return $this->hasMany(LigneCommande::class);
     }
     public function paiement() {
-        return $this->belonsTo(Paiement::class);
+        return $this->belongsTo(Paiement::class);
     }
 }

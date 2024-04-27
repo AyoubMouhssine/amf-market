@@ -3,7 +3,7 @@ import "./menu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../store/slices/categoriesSlice";
 import { fetchProduitsByCategorie } from "../../store/slices/produitsSlice";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const Menu = ({ categorieId }) => {
   const dispatch = useDispatch();

@@ -22,10 +22,36 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    
+public function store(Request $request)
+{
+    $produit = Produit::create([
+        'vendeur_vendeurId' => $request->vendeur_vendeurId,
+        'description' => $request->description,
+        'nom' => $request->nom,
+        'stock' => $request->stock,
+        'prix' => $request->prix,
+        'store_storeId' => $request->store_storeId,
+        'categorie_categorieId' => $request->categorie_categorieId
+    ]);
+
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $path = $image->store('public/images', ['public']);
+            Media::create([
+                "produit_produitId" => $produit->produitId,
+                "url" => $path
+            ]);
+        }
     }
+
+    return response()->json([
+        'message' => "success",
+        'produit' => new ProduitCollection($produit)
+    ]);
+}
+
+
 
 public function index(Request $request)
 {
@@ -89,7 +115,8 @@ public function index(Request $request)
     {
         return response()->json([
             "message" => "success",
-            "images" => new MediaCollection(Media::all())
+            "images" => new MediaCollection(Media::inRandomOrder()->take(5)->get())
+
         ]);
     }
 
