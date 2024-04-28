@@ -45,8 +45,10 @@ public function store(Request $request)
         }
     }
 
+    if(!$produit) return response()->json(['fail'=>'product deos not created successfully']);
+    
     return response()->json([
-        'message' => "success",
+        'success' => "product created successfully",
         'produit' => new ProduitCollection($produit)
     ]);
 }

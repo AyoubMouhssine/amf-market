@@ -28,14 +28,15 @@ const MenuSeller = () => {
             Dashboard
           </a>
         </li>
-        <li>
-          <a className="dropdown-item-seller" href="/seller/allproduct">
-            All Products
-          </a>
-        </li>
+
         <li>
           <a className="dropdown-item-seller" href="/seller/createproduct">
             New Product
+          </a>
+        </li>
+        <li>
+          <a className="dropdown-item-seller" href="/seller/createstore">
+            Create Store
           </a>
         </li>
         <li>

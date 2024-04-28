@@ -6,29 +6,43 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../store/slices/categoriesSlice";
 import { axios } from "../../../lib/axios";
 import useCheckAuth from "../../../lib/helpers/useCheckAuth";
+import { useNavigate } from "react-router-dom";
+import {
+  fetchStores,
+  selectAllStores,
+} from "../../../store/slices/storesSlice";
 function CreateProduct() {
   useCheckAuth("vendeur");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { categories } = useSelector((state) => state.categories);
+  const vendeurId = JSON.parse(sessionStorage.getItem("current_user")).user
+    .vendeurId;
   useEffect(() => {
+    dispatch(fetchStores(vendeurId));
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  const stores = useSelector(selectAllStores);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    formData.append(
-      "vendeur_vendeurId",
-      JSON.parse(sessionStorage.getItem("current_user")).user.vendeurId
-    );
-    formData.append("store_storeId", 1);
+    formData.append("vendeur_vendeurId", vendeurId);
     try {
       const response = await axios.post("/produits", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response.data);
+
+      if ((response.status === 200, response.statusText === "OK")) {
+        alert(response.data.success);
+        navigate("/seller/dashboard");
+      } else {
+        alert(response.data.fail);
+        event.target.reset();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +105,24 @@ function CreateProduct() {
             </div>
           </div>
           <div className="form-group">
-            <label className="label-product-group">Product Category :</label>
+            <label className="label-product-group">Store :</label>
+            <select
+              name="store_storeId"
+              id="store_storeId"
+              className="input-product-group"
+            >
+              <option>choise votre store</option>
+              {stores.map((store, i) => {
+                return (
+                  <option value={store.storeId} key={store.storeId}>
+                    {store.nom_store}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="label-product-group">Categorie :</label>
             <select
               name="categorie_categorieId"
               id="product-category"

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->unsignedBigInteger('commandeId', true)->primary();
             $table->unsignedBigInteger('user_userId');
-            $table->foreign('user_userId')->references('userId')->on('users');
+            $table->foreign('user_userId')->references('userId')->on('users')->onDelete('cascade');
             $table->dateTime('date_commande');
             $table->boolean('status');
             $table->timestamps();

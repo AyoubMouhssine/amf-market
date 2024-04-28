@@ -13,6 +13,8 @@ import DashboardSeller from "./compenents/Seller/Dashboard";
 import Produits from "./pages/Produits.jsx";
 import SearchResults from "./compenents/SearchResults/SearchResults.jsx";
 import ShowCart from "./compenents/ShowCart/ShowCart.jsx";
+import UserProfile from "./compenents/User/Dashboard-User/UserProfile.jsx";
+import EditUserInfo from "./compenents/User/Dashboard-User/EditUserInfo.jsx";
 const App = () => {
   return (
     <>
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Produits />} />
         </Route>
+        <Route path="/user/profile" element={<UserProfile />} />
+        <Route path="/user/profile/edit" element={<EditUserInfo />} />
         <Route path="/product/:id/detail" element={<ProductDetail />} />
         <Route path="/products" element={<SearchResults />} />
         <Route path="/user/register" element={<RegisterUser />} />
@@ -32,6 +36,7 @@ const App = () => {
           <Route index element={<DashboardSeller />} />
           <Route path="/seller/dashboard" element={<DashboardSeller />} />
           <Route path="/seller/createproduct" element={<CreateProduct />} />
+          <Route path="/seller/createstore" element={<CreateStore />} />
         </Route>
       </Routes>
     </>

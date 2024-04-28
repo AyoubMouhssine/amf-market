@@ -3,28 +3,51 @@ import logo from "../images/logo1.png";
 import "./user.css";
 import login from "../../lib/helpers/login";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuthStatus } from "../../store/slices/authSlice";
 
 function LoginUser() {
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await login("user", {
-        email,
-        password,
-      });
 
-      if (response.message === "success") {
-        navigate("/");
+    const validationErrors = {};
+    if (!email.trim()) {
+      validationErrors.email = "Email is required.";
+    }
+    if (!password.trim()) {
+      validationErrors.password = "Password is required.";
+    }
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        const response = await login("user", { email, password });
+
+        if (response.message === "success") {
+          dispatch(setAuthStatus(true));
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Login failed:", error);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("An error occurred. Please try again later.");
+        }
       }
-    } catch (error) {
-      console.error("Login failed:", error);
     }
   };
+
   return (
     <>
       <img src={logo} alt="logo" className="logo" />
@@ -33,7 +56,6 @@ function LoginUser() {
         <div className="link-register">
           <p>
             <a href="/user/login" className="link-register-user">
-              {" "}
               Login as User
             </a>
           </p>
@@ -41,6 +63,9 @@ function LoginUser() {
             <a href="/vendeur/login "> Login as Seller</a>
           </p>
         </div>
+        {errorMessage && (
+          <div className="error-message general-message">{errorMessage}</div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email" className="label-group">
@@ -50,10 +75,14 @@ function LoginUser() {
               type="email"
               id="email"
               name="email"
-              required
-              onChange={(e) => setemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className="input-group"
             />
+            {errors.email && (
+              <div className="error-message email-error-message">
+                {errors.email}
+              </div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="password" className="label-group">
@@ -63,10 +92,14 @@ function LoginUser() {
               type="password"
               id="password"
               name="password"
-              required
-              onChange={(e) => setpassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               className="input-group"
             />
+            {errors.password && (
+              <div className="error-message password-error-message">
+                {errors.password}
+              </div>
+            )}
           </div>
           <button type="submit" className="login-user-botton">
             Login

@@ -1,0 +1,113 @@
+.form-userprofile{
+    width: 40%;
+    margin-top: 100px;
+    margin-left: 400px;
+    padding: 30px;
+    background-color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #868686;
+    margin-bottom: 50px;
+}
+.edit-user-infrmation{
+    text-align: center;
+    color:#F26101;
+    font-weight: bold;
+    
+    
+}
+.label-userprofile {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 60px;
+  }
+  
+  .input-userprofile,
+  .tex-userprofile {
+    width: 70%;
+    padding: 12px 20px;
+    border: 1px solid #868686;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-left: 60px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+
+  
+  .input-userprofile {
+    background-color: #fbfafa;
+    color: rgb(17, 17, 17);
+    
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .input-userprofile:focus{
+    outline: 2px solid  #F26101;
+
+  }
+  
+  input[type=submit]:hover {
+    background-color:#F26101;
+    font-weight: bold;
+  }
+
+  /* userinformation */
+
+  .user-information{
+    background-color: white;
+    margin-top: 100px;
+    margin-left: 350px;
+    width: 40%;
+    margin-bottom: 50px;
+  }
+  .user-information .user-info-h2{
+    color: black;
+    margin-left: 100px;
+    font-weight: bold;
+  }
+  .user-information ul{
+    margin-top: -30px;
+  }
+  .user-information ul li {
+    list-style: none;
+  }
+  .list-info-user h2{
+    color:#F26101;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: -30px;
+  }
+  .list-info-user span{
+    color: black;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+  .user-information .btn-edit{
+    width: 300px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: 100px;
+    height: 35px;
+    background-color: #F26101;
+    padding: 5px;
+    border: 1px solid #F26101;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+   
+  }
+  .user-information .btn-edit:hover{
+    background-color: white;
+    box-shadow: 1px 1px 1px #F26101;
+  }
+
+
+  /* Order History */
+
+
+ .Order-History{
+  border: 1pz solid grey;
+ }
+

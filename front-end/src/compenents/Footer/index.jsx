@@ -82,7 +82,10 @@ function Footer() {
           </div>
           <div className="">
             <h3>Newsletter</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            <p>
+              Recevez les dernières actualités et mises à jour directement dans
+              votre boîte de réception.
+            </p>
             <form onSubmit={handleSubmit}>
               <input
                 type="email"
@@ -91,7 +94,7 @@ function Footer() {
                 value={email}
                 onChange={handleEmailChange}
               />
-              <button>Signup</button>
+              <button>Subscribe</button>
             </form>
           </div>
         </div>

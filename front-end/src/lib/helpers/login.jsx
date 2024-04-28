@@ -15,6 +15,7 @@ const login = async (userType, data) => {
         user,
       })
     );
+
     return res.data;
   } catch (error) {
     console.log(error);

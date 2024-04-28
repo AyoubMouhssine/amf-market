@@ -9,6 +9,8 @@ use App\Http\Controllers\VendeurController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UserController;
+
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,16 +22,36 @@ Route::post('/user/register', [AuthUserController::class, 'register']);
 Route::post('/vendeur/login', [AuthVendeurController::class, 'login']);
 Route::post('/vendeur/register', [AuthVendeurController::class, 'register']);
 
-
-
 Route::middleware(['auth:sanctum'])->group(function () {
+
     Route::get('/vendeur', [VendeurController::class, 'vendeur']);
+
     Route::post('/vendeur/logout', [AuthVendeurController::class, 'logout']);
+
     Route::get('/user', [AuthUserController::class, 'user']);
+
     Route::post('/user/logout', [AuthUserController::class, 'logout']);
-    Route::post('/vendeur/1/store/create', [StoreController::class, 'create']);
+
+    Route::post('/store/create', [StoreController::class, 'create']);
+
+
+
     Route::post('/vendeur/create', [VendeurController::class, 'create']);
 
+
+
+
+//get stores of a given vendeur
+    Route::get('vendeur/{vendeur}/stores', [VendeurController::class, 'stores']);
+
+//get all products related on given store
+    Route::get('/store/{store}/products',[StoreController::class, 'products']);
+
+//delet store
+    Route::delete('/store/{store}', [StoreController::class, 'destroy']);
+
+//update user
+    Route::put('/users/update', [UserController::class,'update']);
 
 //commandes
     Route::apiResource('/commandes', CommandeController::class);
@@ -45,8 +67,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 //get some images for carousel to display it on home page
 Route::get('/produits/images', [ProduitController::class, 'images']);
-
-
 
 
 //filter produits by given categorie
@@ -65,3 +85,5 @@ Route::apiResource('/categories', CategoieController::class);
 
 //subscribe
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
+
+

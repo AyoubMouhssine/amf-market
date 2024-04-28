@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nom_store');
             $table->text('description');
             $table->unsignedBigInteger('vendeur_vendeurId');
-            $table->foreign('vendeur_vendeurId')->references('vendeurId')->on('vendeurs');//->onDelete('cascade');
+            $table->foreign('vendeur_vendeurId')->references('vendeurId')->on('vendeurs')->onDelete('cascade');
             $table->timestamps();
         });
     }

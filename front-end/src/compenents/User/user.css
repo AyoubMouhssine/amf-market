@@ -1,121 +1,126 @@
 /* style for regiser as user */
-body{
-    background-color: #D9E8F5;
+body {
+  background-color: #d9e8f5;
 }
-.registe-user{
-    background-color: white;
-    width: 550px;
-    text-align: center;
-    border-radius: 22px;
-    height: 650px;
-    margin-left: 350px;
-    box-shadow: 5px 5px 5px grey;
+.registe-user {
+  background-color: white;
+  width: 550px;
+  text-align: center;
+  border-radius: 22px;
+  height: 650px;
+  margin-left: 350px;
+  box-shadow: 5px 5px 5px grey;
+}
 
+.form-group {
+  display: block;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  margin-bottom: 25px;
+}
+.error-message {
+  position: absolute;
+  color: red;
 }
 
+.general-message {
+    position: relative;
+  top: 10px;
+  left: 20px;
+  font-size: bold;
+}
 
-.form-group{
-    display: block; 
-    align-items: center; 
-    justify-content: center;
-    margin-top: 10px;
-
+.password-error-message {
+  top: -60px;
+  left: 90px;
 }
-.label-group{
-    display: flex;
-    margin-left: 50px;
-    padding: 10px;
-    font-size: 18px;
-  
-
+.email-error-message {
+  top: -60px;
+  margin: 10px 0;
+  left: 90px;
 }
- .input-user-group{
-    border-radius: 5px;
-    width: 350px;
-    height: 32px;
-    border: 1px solid #7b7b7b;
+.label-group {
+  display: flex;
+  margin-left: 50px;
+  padding: 10px;
+  font-size: 18px;
 }
-.input-user-group:focus{
-    outline: 2px solid  #F26101;
+.input-user-group {
+  border-radius: 5px;
+  width: 350px;
+  height: 32px;
+  border: 1px solid #7b7b7b;
 }
-.register-user-botton{
-    background-color: #F26101;
-    border: 1px solid #F26101;
-    border-radius: 5px;
-    width: 350px;
-    height: 30px;
-    margin: 20px ;
-    font-size: 16px;
-    font-weight: bold;
-
+.input-user-group:focus {
+  outline: 2px solid #f26101;
 }
-p{
-    font-size: 16px;
-    font-weight: bold;
-    font-style: italic;
-
+.register-user-botton {
+  background-color: #f26101;
+  border: 1px solid #f26101;
+  border-radius: 5px;
+  width: 350px;
+  height: 30px;
+  margin: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }
-p a{
-    font-size: 16px;
-    font-weight: bold;
-    color: #F26101;
+p {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
 }
-.link-register{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px 0 0 100px;
-    width: 350px;
-    
-
+p a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #f26101;
 }
-.link-register a{
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
+.link-register {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 0 100px;
+  width: 350px;
 }
-.link-register a:focus{
-
-    color: #F26101;
+.link-register a {
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
 }
-.link-register a:active{
-
-    color: #F26101;
+.link-register a:focus {
+  color: #f26101;
 }
-.link-register .link-register-user{
-    color: #F26101;
-
-
+.link-register a:active {
+  color: #f26101;
+}
+.link-register .link-register-user {
+  color: #f26101;
 }
 .logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-
 
 /* style for login user */
 
-.login-user{
-    background-color: white;
-    width: 550px;
-    text-align: center;
-    border-radius: 22px;
-    height: 350px;
-    margin-left: 350px;
-    box-shadow: 5px 5px 5px grey;
-
+.login-user {
+  background-color: white;
+  width: 550px;
+  text-align: center;
+  border-radius: 22px;
+  height: 350px;
+  margin-left: 350px;
+  box-shadow: 5px 5px 5px grey;
 }
- .login-user-botton{
-    background-color: #F26101;
-    border: 1px solid #F26101;
-    border-radius: 5px;
-    width: 350px;
-    height: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 20px ;
+.login-user-botton {
+  background-color: #f26101;
+  border: 1px solid #f26101;
+  border-radius: 5px;
+  width: 350px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px;
 }
-

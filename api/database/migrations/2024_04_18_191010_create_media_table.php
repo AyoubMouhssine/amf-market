@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('medias', function (Blueprint $table) {
             $table->unsignedBigInteger('mediaId', true)->primary();
             $table->unsignedBigInteger('produit_produitId');
-            $table->foreign('produit_produitId')->references('produitId')->on('produits');
+            $table->foreign('produit_produitId')->references('produitId')->on('produits')->onDelete('cascade');
             $table->string('url');
             $table->timestamps();
         });

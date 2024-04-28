@@ -21,7 +21,7 @@ function LoginSeller() {
     try {
       const response = await login("vendeur", data);
       if (response.message === "success") {
-        navigate("/seller");
+        navigate("/seller/createStore");
       }
     } catch (error) {
       console.error("Login failed:", error);

@@ -27,4 +27,13 @@ class VendeurController extends Controller
             "vendeur" => Auth::user()
         ], "success", 200);
     }
+
+    public function stores(Vendeur $vendeur){
+        return response()->json([
+            'success' => 'success',
+            'data'=>$vendeur->stores 
+        ]);
+
+        
+    }
 }
