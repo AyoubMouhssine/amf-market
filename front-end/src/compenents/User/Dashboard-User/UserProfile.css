@@ -106,8 +106,48 @@
 
   /* Order History */
 
+.Order-History{
+  margin: 50px;
+  margin-top: 200px;
+  background-color: white;
 
- .Order-History{
-  border: 1pz solid grey;
+}
+.Order-History h1{
+  text-align: center;
+  margin: 20px;
+}
+ .Order-History .table-Order-History{
+  width: 100%;
+}
+.Order-History .table-Order-History td{
+  text-align: center;
+  padding: 10px;
+
+}
+
+
+.Order-History .table-Order-History th{
+    padding: 10px;
+   margin-top: 40px;
+   font-weight: bold;
+   font-size: 20px;
+   color: #F26101;
+
  }
+ .Order-History .table-Order-History .actionDetail a{
+  color: #0dbcfc;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+}
+.Order-History .table-Order-History .statusorder{
+  color: #08f803;
+  font-weight: bold;
+  font-size: 20px;
+}
+.Order-History a{
+  font-size: 24px;
+  color: #F26101;
+  font-weight: bold;
+}
 

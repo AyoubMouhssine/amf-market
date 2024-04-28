@@ -15,6 +15,8 @@ import SearchResults from "./compenents/SearchResults/SearchResults.jsx";
 import ShowCart from "./compenents/ShowCart/ShowCart.jsx";
 import UserProfile from "./compenents/User/Dashboard-User/UserProfile.jsx";
 import EditUserInfo from "./compenents/User/Dashboard-User/EditUserInfo.jsx";
+import OrderHistory from "./compenents/User/Dashboard-User/OrderHistory.jsx";
+import ShowitemsOrdered from "./compenents/User/Dashboard-User/ShowitemsOrdered.jsx";
 const App = () => {
   return (
     <>
@@ -29,6 +31,11 @@ const App = () => {
         <Route path="/user/register" element={<RegisterUser />} />
         <Route path="/vendeur/register" element={<RegisterSeller />} />
         <Route path="/user/login" element={<LoginUser />} />
+        <Route path="/user/myorder" element={<OrderHistory />} />
+        <Route
+          path="/user/commandes/:commandeId/detail"
+          element={<ShowitemsOrdered />}
+        />
         <Route path="/vendeur/login" element={<LoginSeller />} />
         <Route path="/vendeur/create/store" element={<CreateStore />} />
         <Route path="/order" element={<ShowCart />} />

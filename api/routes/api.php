@@ -62,6 +62,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 //check if user has already have review for a given produit
     Route::get('/produits/{produit}/reviews/user/{user}', [ReviewController::class, 'checkUserReview']);
+
+//get products of a user commande
+Route::get('/commandes/{id}/produits', [UserController::class, 'getUserCommandeProducts']);
+
+//get user commandes
+Route::get('/user/{user}/commandes', [UserController::class, 'getUserCommande']);
 });
 
 

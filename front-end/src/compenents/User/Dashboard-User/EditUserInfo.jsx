@@ -5,6 +5,8 @@ import useCheckAuth from '../../../lib/helpers/useCheckAuth';
 import Header from '../../Header/index';
 import Footer from '../../Footer/index';
 import { useNavigate } from 'react-router-dom';
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 function EditUserInfo() {
     const [user, setUser] = useState({});
@@ -66,6 +68,8 @@ function EditUserInfo() {
             <Header />
             <div>
                 <form onSubmit={handleSubmit} className='form-userprofile'>
+                <a href='/user/profile' > <IoMdArrowRoundBack /> Back</a>
+
                     <h2 className='edit-user-infrmation'>Edit My Information</h2>
 
                     <label htmlFor="email" className='label-userprofile'>E-mail address:</label>

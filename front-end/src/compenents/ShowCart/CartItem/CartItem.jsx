@@ -28,14 +28,14 @@ const CartItem = ({ item }) => {
           type="button"
           onClick={() => dispatch(decrementCartItemQuantity(item.id))}
         >
-          -
+          <p> - </p>
         </button>
         <span>{item.quantity}</span>
         <button
           type="button"
           onClick={() => dispatch(incrementCartItemQuantity(item.id))}
         >
-          +
+          <p> + </p>
         </button>
       </div>
       <button type="button" onClick={() => handleRemoveFromCart(item.id)}>
