@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('commande_commandeId');
             $table->foreign('commande_commandeId')->references('commandeId')->on('commandes');
             $table->unsignedBigInteger('produit_produitId');
-            $table->foreign('produit_produitId')->references('produitId')->on('produits');
+            $table->foreign('produit_produitId')->references('produitId')->on('produits')->onDelete('cascade');
             $table->integer('stock');
             $table->float('prix_unitaire');
             $table->timestamps();

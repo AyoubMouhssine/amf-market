@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\StoreProduitsCollection;
 use App\Models\Store;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class StoreController extends Controller
 {
     public function create(Request $request)
@@ -31,14 +31,22 @@ class StoreController extends Controller
         ]);
     }
 
-
     public function destroy(Store $store)
     {
-
-        $store->delete();
-
-        return response()->json(['message' => 'Store and associated products deleted successfully'], 200);
+        $produits = $store->produits()->with('medias')->get();
+        
+        foreach ($produits as $produit) {
+            foreach ($produit->medias as $media) {
+                Storage::delete($media->url);
+        }
     }
+
+    $store->delete();
+
+    return response()->json(['message' => 'Store and associated products deleted successfully'], 200);
+}
+
+
 
 
        public function products(Store $store)
