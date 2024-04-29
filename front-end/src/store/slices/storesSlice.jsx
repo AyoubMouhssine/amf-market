@@ -57,6 +57,22 @@ export const deleteStore = createAsyncThunk(
   }
 );
 
+export const updateStore = createAsyncThunk(
+  "stores/updateStore",
+  async (storeData, { getState }) => {
+    try {
+      const response = await axios.put(`/stores/update`, storeData, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`,
+        },
+      });
+      return response.data.store;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 const storeSlice = createSlice({
   name: "store",
   initialState,
@@ -103,6 +119,20 @@ const storeSlice = createSlice({
         }
       })
       .addCase(deleteStore.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(updateStore.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(updateStore.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        const index = state.stores.findIndex(
+          (store) => store.storeId === action.payload.storeId
+        );
+        state.stores[index] = action.payload;
+      })
+      .addCase(updateStore.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

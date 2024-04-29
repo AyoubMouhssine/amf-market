@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('stock');
             $table->foreign('store_storeId')->references('storeId')->on('stores')->onDelete('cascade');
             $table->foreign('categorie_categorieId')->references('categorieId')->on('categories')->onDelete('cascade');
+            
+            $table->softDeletes();
 
             $table->timestamps();
         });

@@ -36,17 +36,31 @@ class StoreController extends Controller
         $produits = $store->produits()->with('medias')->get();
         
         foreach ($produits as $produit) {
-            foreach ($produit->medias as $media) {
+                foreach ($produit->medias as $media) {
                 Storage::delete($media->url);
+            }
         }
+
+        $store->delete();
+
+        return response()->json(['message' => 'Store and associated products deleted successfully'], 200);
     }
 
-    $store->delete();
+ public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nom_store' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
 
-    return response()->json(['message' => 'Store and associated products deleted successfully'], 200);
-}
+        $store = Store::find($request->storeId);
 
-
+        $store->update([
+            'nom_store' => $validatedData['nom_store'],
+            'description' => $validatedData['description']
+        ]);
+        return response()->json(['message' => 'Store updated successfully', 'store' => $store]);
+    }
 
 
        public function products(Store $store)

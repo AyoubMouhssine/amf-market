@@ -34,12 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/store/create', [StoreController::class, 'create']);
 
-
-
     Route::post('/vendeur/create', [VendeurController::class, 'create']);
-
-
-
 
 //get stores of a given vendeur
     Route::get('vendeur/{vendeur}/stores', [VendeurController::class, 'stores']);
@@ -47,15 +42,19 @@ Route::middleware(['auth:sanctum'])->group(function () {
 //get all products related on given store
     Route::get('/store/{store}/products',[StoreController::class, 'products']);
 
-//delet store
+ //update store
+    Route::put('/stores/update', [StoreController::class, 'update']);
+
+
+//delete store
     Route::delete('/store/{store}', [StoreController::class, 'destroy']);
 
 //update user
     Route::put('/users/update', [UserController::class,'update']);
 
+
 //commandes
     Route::apiResource('/commandes', CommandeController::class);
-
 
 //review;
     Route::post('/produits/{produit}/reviews',[ReviewController::class, 'createReview']);

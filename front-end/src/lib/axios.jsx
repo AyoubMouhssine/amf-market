@@ -7,7 +7,9 @@ const axios = Axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
+
   },
+  
 });
 
 axios.interceptors.request.use((config) => {
