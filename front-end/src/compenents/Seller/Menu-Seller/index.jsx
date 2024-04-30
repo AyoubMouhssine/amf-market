@@ -31,6 +31,11 @@ const MenuSeller = () => {
 
         <li>
           <a className="dropdown-item-seller" href="/seller/createproduct">
+            Profile
+          </a>
+        </li>
+        <li>
+          <a className="dropdown-item-seller" href="/seller/createproduct">
             New Product
           </a>
         </li>
@@ -40,7 +45,7 @@ const MenuSeller = () => {
           </a>
         </li>
         <li>
-          <a className="dropdown-item-seller" onClick={handleLogout}>
+          <a className="dropdown-item-seller" href="#" onClick={handleLogout}>
             logout
           </a>
         </li>

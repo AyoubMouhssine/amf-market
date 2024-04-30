@@ -73,11 +73,37 @@ export const updateStore = createAsyncThunk(
   }
 );
 
+export const deleteProduitOfStore = createAsyncThunk(
+  "/stores/deleteProduitOfStore",
+  async (id, { getState }) => {
+    const response = await axios.delete(`/produits/${id}`);
+    return response.data;
+  }
+);
+
+export const updateProduitOfStore = createAsyncThunk(
+  "stores/updateProduitOfStore",
+  async (updatedProduct, { getState }) => {
+    try {
+      const response = await axios.put(
+        `/produits/${updatedProduct.id}`,
+        updatedProduct
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 const storeSlice = createSlice({
   name: "store",
   initialState,
   reducers: {
     selectStore: (state, action) => {
+      state.selectedStoreId = action.payload;
+    },
+    getStoreId(state, action) {
       state.selectedStoreId = action.payload;
     },
   },
@@ -110,10 +136,13 @@ const storeSlice = createSlice({
       })
       .addCase(deleteStore.fulfilled, (state, action) => {
         state.status = "succeeded";
+
+        console.log(state.selectedStoreId);
         state.stores = state.stores.filter(
           (store) => store.storeId !== action.payload
         );
-        if (state.selectedStoreId === action.payload) {
+
+        if (state.selectedStoreId === +action.payload) {
           state.selectedStoreId = null;
           state.selectedStoreProducts = [];
         }
@@ -135,11 +164,41 @@ const storeSlice = createSlice({
       .addCase(updateStore.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(deleteProduitOfStore.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(deleteProduitOfStore.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.selectedStoreProducts = state.selectedStoreProducts.filter(
+          (produit) => produit.id !== action.payload.produitId
+        );
+      })
+
+      .addCase(deleteProduitOfStore.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(updateProduitOfStore.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(updateProduitOfStore.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        const index = state.selectedStoreProducts.findIndex(
+          (produit) => produit.id === +action.payload.product.id
+        );
+        if (index !== -1) {
+          state.selectedStoreProducts[index] = action.payload.product;
+        }
+      })
+      .addCase(updateProduitOfStore.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
 
-export const { selectStore } = storeSlice.actions;
+export const { selectStore, getStoreId } = storeSlice.actions;
 
 export default storeSlice.reducer;
 

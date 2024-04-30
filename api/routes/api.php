@@ -10,6 +10,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 
 use App\Models\Media;
 use Illuminate\Http\Request;
@@ -92,3 +93,7 @@ Route::apiResource('/categories', CategoieController::class);
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
 
 
+
+
+//admin dashboard
+Route::get('/dashboard/statistics',[DashboardController::class, 'statistics']);

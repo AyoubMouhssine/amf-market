@@ -90,9 +90,20 @@ public function index(Request $request)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Produit $produit)
     {
-        //
+        $validatedData = $request->validate([
+            'nom' => 'required|string',
+            'prix' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
+
+        $produit->update($validatedData);
+
+        return response()->json([
+            'message' => 'Product updated successfully',
+            'product' => new ProduitCollection($produit) 
+        ]);
     }
 
     /**
@@ -108,7 +119,8 @@ public function index(Request $request)
         $produit->delete();
 
         return response()->json([
-            'message' => 'Product and associated media deleted successfully'
+            'message' => 'Product and associated media deleted successfully',
+            'produitId'=>$produit->produitId
         ]);
     }
 
