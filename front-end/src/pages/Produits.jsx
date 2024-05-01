@@ -33,11 +33,7 @@ const Produits = () => {
             {produits.map((produit) => (
               <Produit
                 key={produit.id}
-                image={
-                  produit.medias.length !== 0
-                    ? produit.medias[0]["image"]
-                    : exempleImage
-                }
+                images={produit.medias}
                 description="none"
                 title={produit.nom}
                 price={produit.prix}

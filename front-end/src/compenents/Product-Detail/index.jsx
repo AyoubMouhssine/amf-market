@@ -12,6 +12,7 @@ import AddReviewForm from "../AddReviewForm/AddReviewForm.jsx";
 import { fetchProduits } from "../../store/slices/produitsSlice";
 import { fetchReviews, addReview } from "../../store/slices/reviewSlice";
 import { addItem } from "../../store/slices/cartSlice.jsx";
+import Carousel from "../Carousel/index.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -91,7 +92,12 @@ const ProductDetail = () => {
           <div className="product-detail-container">
             <div className="product-detail-image">
               {produit && produit.medias && produit.medias.length > 0 && (
-                <img src={produit.medias[0].image} alt="Product" />
+                <Carousel
+                  withIndicator={false}
+                  time={4000}
+                  images={produit.medias}
+                  height={"400px"}
+                />
               )}
             </div>
             <div className="product-detail-info">

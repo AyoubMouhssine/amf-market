@@ -85,15 +85,14 @@ Route::get('/produits/{produit}/reviews', [ProduitController::class, 'reviews'])
 Route::apiResource('/produits', ProduitController::class);
 
 
-
 Route::apiResource('/categories', CategoieController::class);
-
 
 //subscribe
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
 
-
-
-
 //admin dashboard
 Route::get('/dashboard/statistics',[DashboardController::class, 'statistics']);
+
+Route::get('/dashboard/sales', [DashboardController::class, 'salesData']);
+
+Route::get('/users', [UserController::class, 'index']);

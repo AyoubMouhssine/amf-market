@@ -20,7 +20,12 @@ function index() {
       <div className="main">
         <Menu />
         <div className="content">
-          <Carousel images={images} />
+          <Carousel
+            images={images}
+            height={"490px"}
+            withIndicator={false}
+            time={3000}
+          />
         </div>
       </div>
       <Outlet />

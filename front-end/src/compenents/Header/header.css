@@ -1,11 +1,11 @@
-* {
+/* * {
   box-sizing: 0;
   padding: 0px;
   margin: 0px;
 }
 body {
   background-color: #d9e8f5;
-}
+} */
 .header {
   background-color: #86abd4;
   height: 50px;
@@ -22,8 +22,8 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1140px;
-  margin: 10px;
+  /* max-width: 1140px; */
+  margin: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;

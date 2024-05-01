@@ -4,9 +4,14 @@
 }
 
 .produits-container {
+  padding: 2rem;
+
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin: 0 auto;
   flex-wrap: wrap;
+  padding: 60px;
 }
 
 .produit-item {

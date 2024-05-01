@@ -179,11 +179,10 @@ const Header = () => {
 
         <ul className="header__actions">
           {isAuthenticated ? (
-            <>
-              <a onClick={() => setOpenProfile((prev) => !prev)}>My Account</a>
-
+            <li>
+              <a href="#" onClick={() => setOpenProfile((prev) => !prev)}>My Account</a>
               {openProfile && <DropDownProfile handleLogout={handleLogout} />}
-            </>
+            </li>
           ) : (
             <>
               <li>

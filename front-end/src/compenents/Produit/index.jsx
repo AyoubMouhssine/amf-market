@@ -2,19 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "./index.css";
-import exempleProduct from "../images/photo4.jpg";
+import Carousel from "../Carousel";
 export default function Produit(props) {
-  const { image, title, price, link } = props;
+  const { images, title, price, link } = props;
 
   return (
     <Card className="product-card">
       <Link to={link}>
-        <Card.Img
-          variant="top"
-          src={image ? image : exempleProduct}
-          alt={title}
-          className="product-image"
-        />
+        <div className=".product-image">
+          <Carousel
+            images={images}
+            withIndicator={false}
+            height={"200px"}
+            time={5000}
+          />
+        </div>
         <Card.Body className="card-body">
           <Card.Title className="product-title">{title}</Card.Title>
           <Card.Text className="product-price">{price} Dhs</Card.Text>

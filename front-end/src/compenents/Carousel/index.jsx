@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchimages } from "../../store/slices/imagesSlice";
 import { useNavigate } from "react-router-dom";
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, height, withIndicator, time }) => {
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const Carousel = ({ images }) => {
       setSlide((prevSlide) =>
         prevSlide === images.length - 1 ? 0 : prevSlide + 1
       );
-    }, 3000);
+    }, time);
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -21,7 +21,7 @@ const Carousel = ({ images }) => {
     navigate(`/product/${id}/detail`);
   };
   return (
-    <div className="carousel">
+    <div className="carousel" style={{ height: height }}>
       {images.map((item, idx) => {
         return (
           <img
@@ -33,7 +33,10 @@ const Carousel = ({ images }) => {
           />
         );
       })}
-      <span className="indicators">
+      <span
+        className="indicators"
+        style={{ display: !withIndicator ? "none" : "block" }}
+      >
         {images.map((_, idx) => {
           return (
             <button
@@ -49,5 +52,6 @@ const Carousel = ({ images }) => {
     </div>
   );
 };
+
 
 export default Carousel;

@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function index(){
+        return response()->json([
+            'data'=>User::all()]);
+    }
     public function update(Request $request)
     {
         $validatedData = $request->validate([

@@ -17,6 +17,7 @@ import UserProfile from "./compenents/User/Dashboard-User/UserProfile.jsx";
 import EditUserInfo from "./compenents/User/Dashboard-User/EditUserInfo.jsx";
 import OrderHistory from "./compenents/User/Dashboard-User/OrderHistory.jsx";
 import ShowitemsOrdered from "./compenents/User/Dashboard-User/ShowitemsOrdered.jsx";
+import AdminDashboard from "./compenents/Admin/AdminDashboard.jsx";
 const App = () => {
   return (
     <>
@@ -45,6 +46,8 @@ const App = () => {
           <Route path="/seller/createproduct" element={<CreateProduct />} />
           <Route path="/seller/createstore" element={<CreateStore />} />
         </Route>
+
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </>
   );

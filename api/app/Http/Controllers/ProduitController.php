@@ -69,6 +69,9 @@ public function index(Request $request)
         $query = Categorie::findOrFail($categorie)->produits();
     }
 
+
+    $query->inRandomOrder();
+
     $produits = $query->paginate(28);
 
     return response()->json([
