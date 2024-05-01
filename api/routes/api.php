@@ -37,6 +37,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/vendeur/create', [VendeurController::class, 'create']);
 
+//update seller info
+    Route::put('/vendeur/update', [VendeurController::class,'update']);
+    
 //get stores of a given vendeur
     Route::get('vendeur/{vendeur}/stores', [VendeurController::class, 'stores']);
 

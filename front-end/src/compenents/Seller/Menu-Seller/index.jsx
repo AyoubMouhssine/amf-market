@@ -6,32 +6,26 @@ import { useDispatch } from "react-redux";
 const MenuSeller = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleLogout = async () => {
-    try {
-      const authToken = sessionStorage.getItem("auth_token");
-      if (!authToken) {
-        return;
-      }
-      const response = await logout(dispatch, "vendeur", authToken);
-      if (response.message === "success") {
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     const authToken = sessionStorage.getItem("auth_token");
+  //     if (!authToken) {
+  //       return;
+  //     }
+  //     const response = await logout(dispatch, "vendeur", authToken);
+  //     if (response.message === "success") {
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <menu className="menu-seller">
       <ul className="dropdown-menu-seller">
         <li>
           <a className="dropdown-item-seller" href="/seller/dashboard">
             Dashboard
-          </a>
-        </li>
-
-        <li>
-          <a className="dropdown-item-seller" href="/seller/createproduct">
-            Profile
           </a>
         </li>
         <li>
@@ -44,11 +38,11 @@ const MenuSeller = () => {
             Create Store
           </a>
         </li>
-        <li>
+        {/* <li>
           <a className="dropdown-item-seller" href="#" onClick={handleLogout}>
             logout
           </a>
-        </li>
+        </li> */}
       </ul>
     </menu>
   );

@@ -18,6 +18,8 @@ import EditUserInfo from "./compenents/User/Dashboard-User/EditUserInfo.jsx";
 import OrderHistory from "./compenents/User/Dashboard-User/OrderHistory.jsx";
 import ShowitemsOrdered from "./compenents/User/Dashboard-User/ShowitemsOrdered.jsx";
 import AdminDashboard from "./compenents/Admin/AdminDashboard.jsx";
+import SellerProfile from "./compenents/Seller/Seller-Auth/SellerProfile.jsx";
+import EditSellerInfo from "./compenents/Seller/Seller-Auth/EditSellerInfo.jsx";
 const App = () => {
   return (
     <>
@@ -45,6 +47,8 @@ const App = () => {
           <Route path="/seller/dashboard" element={<DashboardSeller />} />
           <Route path="/seller/createproduct" element={<CreateProduct />} />
           <Route path="/seller/createstore" element={<CreateStore />} />
+          <Route path="/seller/profile" element={<SellerProfile />} />
+          <Route path="/seller/profile/edit" element={<EditSellerInfo />} />
         </Route>
 
         <Route path="/admin" element={<AdminDashboard />} />

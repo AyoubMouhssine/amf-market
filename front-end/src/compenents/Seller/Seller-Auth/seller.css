@@ -8,7 +8,7 @@ body {
   width: 550px;
   text-align: center;
   border-radius: 22px;
-  height: 700px;
+  height: 850px;
   margin-left: 350px;
   box-shadow: 5px 5px 5px grey;
 }
@@ -150,7 +150,6 @@ p a {
   border-radius: 5px;
   width: 350px;
   height: 30px;
-  /* margin: 20px; */
   margin-top: 130px;
   margin-left: 50px;
   font-size: 16px;

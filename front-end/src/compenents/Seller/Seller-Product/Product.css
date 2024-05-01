@@ -16,7 +16,7 @@ body {
   width: 550px;
   text-align: center;
   border-radius: 22px;
-  height: 470px;
+  height: 670px;
   margin-left: 350px;
   /* margin-top: 50px; */
 
@@ -83,43 +83,33 @@ body {
   font-weight: bold;
 }
 
-.image-info,
-.variant-info {
+.image-info {
   background-color: white;
   width: 550px;
   text-align: center;
   border-radius: 22px;
-  height: 300px;
   margin-left: 350px;
   margin-top: 30px;
+  margin-bottom: 100px;
   box-shadow: 5px 5px 5px grey;
   border: 1px solid rgb(255, 255, 255);
 }
-.variant-info {
-  height: 620px;
-  margin-bottom: 130px;
-}
-.image-info .image-group,
-.variant-group {
-  margin-top: 30px;
+
+.image-info .image-group {
+  /* margin-top: 30px; */
   margin-left: 13px;
   display: block;
-  border: 1.5px solid rgb(155, 155, 155);
+  /* border: 1.5px solid rgb(155, 155, 155); */
   border-radius: 5px;
-  height: 200px;
   width: 480px;
   padding: 20px;
 }
-.image-group .label-image,
-.label-variant,
-.label-variant-option {
+.image-group .label-image {
   font-size: 18px;
   font-weight: bold;
   margin-left: -10px;
 }
-.image-group .input-image,
-.input-variant,
-.input-variant-option {
+.image-group .input-image {
   border-radius: 5px;
   height: 21px;
   width: 94px;
@@ -127,14 +117,7 @@ body {
   background-color: #f26101;
   /* display: none; */
 }
-/* .button-image{
-    border-radius: 5px;
-    height: 30px;
-    width: 140px;
-    margin-left: 100px;
-    font-weight: bold;
-    background-color: #F26101;
-} */
+
 hr {
   width: 520px;
   margin-left: -21px;
@@ -142,70 +125,6 @@ hr {
   border: 1px solid #070707;
 }
 
-.variant-group {
-  height: 220px;
-}
-.input-variant {
-  accent-color: #f26101;
-}
-.variant-group .variant-option {
-  border: 1px solide red;
-  margin-top: 40px;
-  background-color: #d9d8d88e;
-  height: 100px;
-  width: 450px;
-  margin-left: 20px;
-  display: block;
-  align-items: center;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px grey;
-}
-.label-variant-option {
-  display: block;
-  margin: 30px 0 0 10px;
-  width: 100px;
-  padding: 5px;
-  font-size: 18px;
-  font-weight: bold;
-}
-.input-variant-option {
-  border-radius: 5px;
-  width: 300px;
-  height: 35px;
-  display: block;
-  margin: 2px 0 0 50px;
-  background-color: white;
-  border: 1px solid #b0b0b0;
-}
-.input-variant-option:hover {
-  outline: 2px solid #f26101;
-}
-.button-variant {
-  margin: 10px 0 0 15px;
-  width: 450px;
-  height: 27px;
-  background-color: #f26101;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.value-group {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
-.value-group button {
-  margin-top: 2px;
-  font-size: 29px;
-  width: 35px;
-  height: 35px;
-  text-align: center;
-  background-color: white;
-  border: 1px solid #c9c9c993;
-  border-radius: 90px;
-}
-.value-group button:hover {
-  background-color: #f26101;
-}
 .footer-seller {
   background-color: white;
   width: 85%;

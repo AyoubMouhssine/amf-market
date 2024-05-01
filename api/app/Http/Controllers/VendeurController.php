@@ -11,6 +11,26 @@ class VendeurController extends Controller
 {
     use HttpResponses;
 
+    public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email', 
+            'nom' => 'required|string', 
+            'prenom' => 'required|string', 
+            'tel' => 'nullable|string', 
+            'cin'=>'required|string', 
+            'adresse' => 'nullable|string', 
+        ]);
+        $vendeur = Vendeur::where('vendeurId', $request->id)->first(); 
+        $vendeur->update($validatedData);
+
+        return response()->json([
+            'message' => 'Seller information updated successfully!',
+            'vendeur'=>$vendeur
+   ],200);}
+
+
+
     public function create(Request $request)
     {
         $vendeur = Vendeur::create($request->all());
