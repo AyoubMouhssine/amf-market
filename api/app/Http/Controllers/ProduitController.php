@@ -99,6 +99,7 @@ public function index(Request $request)
             'nom' => 'required|string',
             'prix' => 'required|numeric',
             'description' => 'nullable|string',
+            'stock' => 'required|numeric',
         ]);
 
         $produit->update($validatedData);

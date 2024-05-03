@@ -1,244 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import useCheckAuth from "../../../lib/helpers/useCheckAuth";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   fetchProductsForStore,
-//   fetchStores,
-//   selectAllStores,
-//   selectSelectedStoreProducts,
-//   deleteStore,
-//   updateStore,
-//   deleteProduitOfStore,
-//   getStoreId,
-//   updateProduitOfStore,
-// } from "../../../store/slices/storesSlice";
-// import "./dashboard.css";
-// import { axios } from "../../../lib/axios";
-// function DashboardSeller() {
-//   const vendeur = useCheckAuth("vendeur");
-//   const dispatch = useDispatch();
-//   const stores = useSelector(selectAllStores);
-//   const products = useSelector(selectSelectedStoreProducts);
-//   const [selectedStoreId, setSelectedStoreId] = useState(null);
-//   const [loading, setLoading] = useState(false);
-//   const [editMode, setEditMode] = useState(false);
-//   const [updatedStore, setUpdatedStore] = useState({
-//     storeId: null,
-//     nom_store: "",
-//     description: "",
-//   });
-
-//   let vendeurId;
-
-//   if (vendeur) {
-//     vendeurId = vendeur.vendeurId;
-//   }
-
-//   useEffect(() => {
-//     dispatch(fetchStores(vendeurId));
-//   }, [dispatch, vendeurId]);
-
-//   console.log(vendeur);
-//   const handleStoreClick = async (storeId) => {
-//     setSelectedStoreId(storeId);
-//     setLoading(true);
-//     await dispatch(fetchProductsForStore(storeId));
-//     setLoading(false);
-//   };
-
-//   const handleDeleteStore = async (storeId) => {
-//     if (
-//       window.confirm(
-//         "Voulez-vous vraiment supprimer ce magasin ? Cette action supprimera également tous les produits associés."
-//       )
-//     ) {
-//       dispatch(getStoreId(storeId));
-//       setLoading(true);
-//       await dispatch(deleteStore(storeId));
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleUpdateStore = (storeId) => {
-//     setEditMode(true);
-//     const storeToUpdate = stores.find((store) => store.storeId === storeId);
-//     setUpdatedStore(storeToUpdate);
-//   };
-
-//   const handleInputChange = (e) => {
-//     setUpdatedStore({
-//       ...updatedStore,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSaveUpdate = async () => {
-//     setLoading(true);
-//     await dispatch(updateStore(updatedStore));
-//     setLoading(false);
-//     setEditMode(false);
-//     setUpdatedStore({
-//       storeId: null,
-//       nom_store: "",
-//       description: "",
-//     });
-//   };
-
-//   const handleDeleteProduit = async (id) => {
-//     dispatch(deleteProduitOfStore(id));
-//   };
-
-//   const handleUpdateProduit = async (produitId) => {
-//     try {
-//       await dispatch(updateProduitOfStore(produitId));
-//       console.log("Product updated successfully");
-//     } catch (error) {
-//       console.error("Error updating product:", error);
-//     }
-//   };
-
-//   return (
-//     <div className="dashboard">
-//       <h2>All Stores</h2>
-//       {stores.length === 0 ? (
-//         <h3 style={{ textAlign: "center" }}>Créez d'abord un magasin</h3>
-//       ) : (
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>Store ID</th>
-//               <th>Store Name</th>
-//               <th>Description</th>
-//               <th></th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {stores.map((store) => (
-//               <tr
-//                 key={store.storeId}
-//                 className={selectedStoreId === store.storeId ? "selected" : ""}
-//               >
-//                 <td>{store.storeId}</td>
-//                 <td>
-//                   {editMode && updatedStore.storeId === store.storeId ? (
-//                     <input
-//                       type="text"
-//                       name="nom_store"
-//                       value={updatedStore.nom_store}
-//                       onChange={handleInputChange}
-//                     />
-//                   ) : (
-//                     store.nom_store
-//                   )}
-//                 </td>
-//                 <td>
-//                   {editMode && updatedStore.storeId === store.storeId ? (
-//                     <input
-//                       type="text"
-//                       name="description"
-//                       value={updatedStore.description}
-//                       onChange={handleInputChange}
-//                     />
-//                   ) : (
-//                     store.description
-//                   )}
-//                 </td>
-//                 <td>
-//                   {editMode && updatedStore.storeId === store.storeId ? (
-//                     <button type="button" onClick={handleSaveUpdate}>
-//                       Save
-//                     </button>
-//                   ) : (
-//                     <>
-//                       <button
-//                         type="button"
-//                         onClick={() => handleStoreClick(store.storeId)}
-//                       >
-//                         Select
-//                       </button>
-//                       <button
-//                         type="button"
-//                         onClick={() => handleDeleteStore(store.storeId)}
-//                       >
-//                         Delete
-//                       </button>
-//                       <button
-//                         type="button"
-//                         onClick={() => handleUpdateStore(store.storeId)}
-//                       >
-//                         Update
-//                       </button>
-//                     </>
-//                   )}
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//       {stores.length > 0 &&
-//         products.length === 0 &&
-//         selectedStoreId !== null && (
-//           <h2 style={{ textAlign: "center" }}>
-//             Aucun produit n'est disponible dans ce magasin pour le moment
-//           </h2>
-//         )}
-
-//       {products.length > 0 && (
-//         <>
-//           <h2>Products</h2>
-//           <table>
-//             <thead>
-//               <tr>
-//                 <th>Product ID</th>
-//                 <th>Image</th>
-//                 <th>Product Name</th>
-//                 <th>Price</th>
-//                 <th>Description</th>
-//                 <th></th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {products.map((product) => (
-//                 <tr key={product.id}>
-//                   <td>{product.id}</td>
-//                   <td>
-//                     <img
-//                       src={
-//                         product.medias[
-//                           Math.floor(Math.random() * product.medias.length)
-//                         ].image
-//                       }
-//                     />
-//                   </td>
-//                   <td>{product.nom}</td>
-//                   <td>{product.prix}</td>
-//                   <td>{product.description}</td>
-//                   <td>
-//                     <button
-//                       type="button"
-//                       onClick={() => handleDeleteProduit(product.id)}
-//                     >
-//                       Delete
-//                     </button>
-//                     <button
-//                       type="button"
-//                       onClick={() => handleUpdateProduit(product.id)}
-//                     >
-//                       Update
-//                     </button>
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </>
-//       )}
-//     </div>
-//   );
-// }
-// export default DashboardSeller;
-
 import React, { useEffect, useState } from "react";
 import useCheckAuth from "../../../lib/helpers/useCheckAuth";
 import { useDispatch, useSelector } from "react-redux";
@@ -269,6 +28,7 @@ function DashboardSeller() {
     storeId: null,
     nom_store: "",
     description: "",
+    stock: 0,
   });
 
   useEffect(() => {
@@ -321,6 +81,7 @@ function DashboardSeller() {
       storeId: null,
       nom_store: "",
       description: "",
+      stock: 0,
     });
   };
 
@@ -442,6 +203,7 @@ function DashboardSeller() {
                 <th>Product ID</th>
                 <th>Image</th>
                 <th>Product Name</th>
+                <th>Stock</th>
                 <th>Price</th>
                 <th>Description</th>
                 <th></th>
@@ -474,6 +236,22 @@ function DashboardSeller() {
                       />
                     ) : (
                       product.nom
+                    )}
+                  </td>
+                  <td>
+                    {editMode && updatedProduct.id === product.id ? (
+                      <input
+                        type="text"
+                        value={updatedProduct.stock}
+                        onChange={(e) =>
+                          setUpdatedProduct({
+                            ...updatedProduct,
+                            stock: e.target.value,
+                          })
+                        }
+                      />
+                    ) : (
+                      product.stock
                     )}
                   </td>
                   <td>
