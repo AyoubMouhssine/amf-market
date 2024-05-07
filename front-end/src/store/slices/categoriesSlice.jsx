@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {axios} from "../../lib/axios";
+import { axios } from "../../lib/axios";
 
 const initialState = {
   categories: [],
@@ -12,9 +12,9 @@ export const fetchCategories = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get("/categories");
-      return response.data.categories; // Assuming categories are directly in data
+      return response.data.categories;
     } catch (error) {
-      return Promise.reject(error); // Explicitly reject for error handling
+      return Promise.reject(error);
     }
   }
 );
@@ -22,7 +22,22 @@ export const fetchCategories = createAsyncThunk(
 const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteCategorie(state, action) {
+      state.categories = state.categories.filter(
+        (categorie) => categorie.id !== +action.payload
+      );
+    },
+    ajouterCategorie(state, action) {
+      state.categories.push({
+        id:
+          state.categories.length === 0
+            ? 1
+            : state.categories[state.categories.length - 1].id + 1,
+        nom: action.payload,
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -40,4 +55,5 @@ const categoriesSlice = createSlice({
   },
 });
 
+export const { deleteCategorie, ajouterCategorie } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

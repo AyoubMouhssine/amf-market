@@ -1,0 +1,7 @@
+.categories {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 20px;
+  width: calc(1000px + 150px);
+}

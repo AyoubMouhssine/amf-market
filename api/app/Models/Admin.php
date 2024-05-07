@@ -3,33 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+
 use Laravel\Sanctum\HasApiTokens;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Vendeur extends Authenticatable
+class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
-
-    protected $primaryKey = 'vendeurId';
+    protected $primaryKey = 'adminId';
 
     protected $fillable = [
-        'nom', 'prenom', 'email', 'cin', 'password', 'tel', 'adresse'
+        'nom', 'prenom', 'email', 'password'
     ];
-    
-    public function stores() {
-        return $this->hasMany(Store::class);
-    }
 
 
 
-        /**
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
+        'created_at',
+        'updated_at'
     ];
 }

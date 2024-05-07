@@ -21,10 +21,30 @@ class CategoieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+public function store(Request $request)
+{
+    $request->validate([
+        'nom' => 'required|string|unique:categories,nom' 
+    ]);
+
+    $existingCategory = Categorie::where('nom', $request->nom)->first();
+
+    if ($existingCategory) {
+        return response()->json([
+            'message' => 'Category already exists'
+        ], 409);
     }
+
+    $categorie = Categorie::create([
+        'nom' => $request->nom
+    ]);
+
+    return response()->json([
+        'message' => 'Category created successfully',
+        'categorie' => $categorie
+    ], 200);
+}
+
 
     /**
      * Display the specified resource.
@@ -45,8 +65,12 @@ class CategoieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $categorie = Categorie::find($id); 
+        $categorie->delete();  
+        return response()->json([
+            'message'=>'Categorie deleted successfully'
+        ]);
     }
 }

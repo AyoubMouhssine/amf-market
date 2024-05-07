@@ -1,4 +1,5 @@
 import Axios from "axios";
+
 const axios = Axios.create({
   baseURL: "http://127.0.0.1:8000/api",
   timeout: 60000,
@@ -7,9 +8,7 @@ const axios = Axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-
   },
-  
 });
 
 axios.interceptors.request.use((config) => {
@@ -20,9 +19,9 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-axios.interceptors.response.use(null, (err) => {
-  console.log(err);
-});
+// axios.interceptors.response.use(null, (err) => {
+//   console.log(err);
+// });
 
 const isAuthenticated = () => {
   const token = sessionStorage.getItem("auth_token");

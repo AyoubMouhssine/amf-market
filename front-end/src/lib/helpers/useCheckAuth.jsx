@@ -13,7 +13,7 @@ const useCheckAuth = (userType) => {
       !currentUser ||
       (currentUser && currentUser.userType !== userType)
     ) {
-      navigate(`/${userType}/login`);
+      navigate(`/${userType}/${userType === "admin" ? "" : "login"}`);
     }
     setUser(currentUser?.user);
   }, [navigate]);

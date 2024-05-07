@@ -90,7 +90,8 @@ const Statistics = () => {
             <h3>Total Users, Stores, Vendors, and Achats</h3>
             <Bar
               data={{
-                labels: ["Users", "Stores", "Vendors", "Total Sales ($)"],
+                // labels: ["Users", "Stores", "Vendors", "Total Sales ($)"],
+                labels: ["Users", "Stores", "Vendors"],
                 datasets: [
                   {
                     label: "Count",
@@ -98,13 +99,13 @@ const Statistics = () => {
                       statistics.total_users,
                       statistics.total_stores,
                       statistics.total_vendeurs,
-                      statistics.total_sales,
+                      // statistics.total_sales,
                     ],
                     backgroundColor: [
                       "rgba(255, 99, 132, 0.6)",
                       "rgba(54, 162, 235, 0.6)",
                       "rgba(255, 159, 64, 0.6)",
-                      "rgba(153, 102, 255, 0.6)",
+                      // "rgba(153, 102, 255, 0.6)",
                     ],
                   },
                 ],

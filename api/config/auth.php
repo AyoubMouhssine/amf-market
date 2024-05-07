@@ -40,10 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        // 'users' => [
-        //     'driver' => 'sanctum',
-        //     'provider' => 'users',
-        // ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
         'vendeur' => [
             'driver' => 'session',
             'provider' => 'vendeurs',
@@ -75,6 +75,10 @@ return [
         'vendeurs' => [
             'driver' => 'eloquent',
             'model' => App\Models\Vendeur::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
     ],
 

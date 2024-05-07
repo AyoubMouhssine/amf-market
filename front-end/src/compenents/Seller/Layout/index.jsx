@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import HeaderSeller from "../Header-Seller/index";
-import MenuSeller from "../Menu-Seller/index";
-import { Outlet, useNavigate } from "react-router-dom";
-// import DashboardSeller from "../Dashboard";
+import { Outlet } from "react-router-dom";
+import MenuAdmin from "../../Admin/MenuAdmin";
 
 function index() {
-
   return (
     <>
       <div>
-        <MenuSeller />
+        <MenuAdmin />
         <div>
           <Outlet />
         </div>

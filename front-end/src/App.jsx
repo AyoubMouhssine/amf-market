@@ -17,9 +17,12 @@ import UserProfile from "./compenents/User/Dashboard-User/UserProfile.jsx";
 import EditUserInfo from "./compenents/User/Dashboard-User/EditUserInfo.jsx";
 import OrderHistory from "./compenents/User/Dashboard-User/OrderHistory.jsx";
 import ShowitemsOrdered from "./compenents/User/Dashboard-User/ShowitemsOrdered.jsx";
-import AdminDashboard from "./compenents/Admin/AdminDashboard.jsx";
 import SellerProfile from "./compenents/Seller/Seller-Auth/SellerProfile.jsx";
 import EditSellerInfo from "./compenents/Seller/Seller-Auth/EditSellerInfo.jsx";
+import LoginAdmin from "./compenents/Admin/LoginAdmin/index.jsx";
+import Statistics from "./compenents/Admin/Statistics/Statistics.jsx";
+import AdminLayout from "./compenents/Admin/AdminLayout/index.jsx";
+import Categories from "./compenents/Admin/Categories/index.jsx";
 const App = () => {
   return (
     <>
@@ -50,8 +53,12 @@ const App = () => {
           <Route path="/seller/profile" element={<SellerProfile />} />
           <Route path="/seller/profile/edit" element={<EditSellerInfo />} />
         </Route>
-
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={<LoginAdmin />} />
+        <Route path="/admin/dashboard" element={<AdminLayout />}>
+          <Route index element={<Statistics />} />
+          <Route path="/admin/dashboard/statistics" element={<Statistics />} />
+          <Route path="/admin/dashboard/categories" element={<Categories />} />
+        </Route>
       </Routes>
     </>
   );
