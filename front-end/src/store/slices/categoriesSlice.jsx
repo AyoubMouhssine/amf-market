@@ -28,6 +28,13 @@ const categoriesSlice = createSlice({
         (categorie) => categorie.id !== +action.payload
       );
     },
+    updateCategorie(state, action) {
+      const categorie = state.categories.find(
+        (categorie) => categorie.id == action.payload.id
+      );
+
+      if (categorie) categorie.nom = action.payload.nom;
+    },
     ajouterCategorie(state, action) {
       state.categories.push({
         id:
@@ -55,5 +62,6 @@ const categoriesSlice = createSlice({
   },
 });
 
-export const { deleteCategorie, ajouterCategorie } = categoriesSlice.actions;
+export const { deleteCategorie, ajouterCategorie, updateCategorie } =
+  categoriesSlice.actions;
 export default categoriesSlice.reducer;
