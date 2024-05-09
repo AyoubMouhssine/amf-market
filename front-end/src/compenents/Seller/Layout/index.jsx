@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import HeaderSeller from "../Header-Seller/index";
 import { Outlet } from "react-router-dom";
-import MenuAdmin from "../../Admin/MenuAdmin";
+import MenuSeller from "../Menu-Seller";
 
 function index() {
   return (
     <>
       <div>
-        <MenuAdmin />
+        <MenuSeller />
         <div>
           <Outlet />
         </div>

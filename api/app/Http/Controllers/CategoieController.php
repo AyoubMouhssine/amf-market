@@ -6,71 +6,65 @@ use App\Http\Resources\CategorieCollection;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
-class CategoieController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return response()->json([
-            'categories' => new CategorieCollection(Categorie::all())
-        ]);
-    }
+class CategoieController extends Controller {
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index() {
+		return response()->json([
+			'categories' => new CategorieCollection(Categorie::all()),
+		]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-public function store(Request $request)
-{
-    $request->validate([
-        'nom' => 'required|string|unique:categories,nom' 
-    ]);
+	}
 
-    $existingCategory = Categorie::where('nom', $request->nom)->first();
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(Request $request) {
+		$request->validate([
+			'nom' => 'required|string|unique:categories,nom',
+		]);
 
-    if ($existingCategory) {
-        return response()->json([
-            'message' => 'Category already exists'
-        ], 409);
-    }
+		$existingCategory = Categorie::where('nom', $request->nom)->first();
 
-    $categorie = Categorie::create([
-        'nom' => $request->nom
-    ]);
+		if ($existingCategory) {
+			return response()->json([
+				'message' => 'Category already exists',
+			], 409);
+		}
 
-    return response()->json([
-        'message' => 'Category created successfully',
-        'categorie' => $categorie
-    ], 200);
-}
+		$categorie = Categorie::create([
+			'nom' => $request->nom,
+		]);
 
+		return response()->json([
+			'message' => 'Category created successfully',
+			'categorie' => $categorie,
+		], 200);
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(string $id) {
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(Request $request, string $id) {
+		//
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        $categorie = Categorie::find($id); 
-        $categorie->delete();  
-        return response()->json([
-            'message'=>'Categorie deleted successfully'
-        ]);
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy($id) {
+		$categorie = Categorie::find($id);
+		$categorie->delete();
+		return response()->json([
+			'message' => 'Categorie deleted successfully',
+		]);
+	}
 }

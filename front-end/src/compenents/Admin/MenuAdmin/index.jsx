@@ -24,12 +24,18 @@ const MenuAdmin = () => {
     <menu className="menu-seller">
       <ul className="dropdown-menu-seller">
         <li>
-          <a className="dropdown-item-seller" href="/admin/dashboard/statistics">
-          Statistics
+          <a
+            className="dropdown-item-seller"
+            href="/admin/dashboard/statistics"
+          >
+            Statistics
           </a>
         </li>
         <li>
-          <a className="dropdown-item-seller" href="/admin/dashboard/categories">
+          <a
+            className="dropdown-item-seller"
+            href="/admin/dashboard/categories"
+          >
             Categories
           </a>
         </li>
