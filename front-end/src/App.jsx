@@ -23,6 +23,7 @@ import LoginAdmin from "./compenents/Admin/LoginAdmin/index.jsx";
 import Statistics from "./compenents/Admin/Statistics/Statistics.jsx";
 import AdminLayout from "./compenents/Admin/AdminLayout/index.jsx";
 import Categories from "./compenents/Admin/Categories/index.jsx";
+import Vendeurs from "./compenents/Admin/Vendeurs/Vendeurs.jsx";
 const App = () => {
   return (
     <>
@@ -58,6 +59,7 @@ const App = () => {
           <Route index element={<Statistics />} />
           <Route path="/admin/dashboard/statistics" element={<Statistics />} />
           <Route path="/admin/dashboard/categories" element={<Categories />} />
+          <Route path="/admin/dashboard/vendeurs" element={<Vendeurs />} />
         </Route>
       </Routes>
     </>

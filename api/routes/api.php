@@ -24,7 +24,7 @@ Route::post('/user/register', [AuthUserController::class, 'register']);
 Route::post('/vendeur/login', [AuthVendeurController::class, 'login']);
 Route::post('/vendeur/register', [AuthVendeurController::class, 'register']);
 //admin
-Route::post('/admin/login',[AuthAdminController::class, 'login']);
+Route::post('/admin/login', [AuthAdminController::class, 'login']);
 Route::post('/admin/register', [AuthAdminController::class, 'register']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -33,47 +33,47 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [AuthUserController::class, 'user']);
     Route::post('/user/logout', [AuthUserController::class, 'logout']);
 
-//admin logout
+    //admin logout
     Route::post('/admin/logout', [AuthAdminController::class, 'logout']);
 
     Route::post('/store/create', [StoreController::class, 'create']);
 
     Route::post('/vendeur/create', [VendeurController::class, 'create']);
 
-//update seller info
-    Route::put('/vendeur/update', [VendeurController::class,'update']);
-    
-//get stores of a given vendeur
+    //update seller info
+    Route::put('/vendeur/update', [VendeurController::class, 'update']);
+
+    //get stores of a given vendeur
     Route::get('vendeur/{vendeur}/stores', [VendeurController::class, 'stores']);
 
-//get all products related on given store
-    Route::get('/store/{store}/products',[StoreController::class, 'products']);
+    //get all products related on given store
+    Route::get('/store/{store}/products', [StoreController::class, 'products']);
 
- //update store
+    //update store
     Route::put('/stores/update', [StoreController::class, 'update']);
 
 
-//delete store
+    //delete store
     Route::delete('/store/{store}', [StoreController::class, 'destroy']);
 
-//update user
-    Route::put('/users/update', [UserController::class,'update']);
+    //update user
+    Route::put('/users/update', [UserController::class, 'update']);
 
 
-//commandes
+    //commandes
     Route::apiResource('/commandes', CommandeController::class);
 
-//review;
-    Route::post('/produits/{produit}/reviews',[ReviewController::class, 'createReview']);
+    //review;
+    Route::post('/produits/{produit}/reviews', [ReviewController::class, 'createReview']);
 
-//check if user has already have review for a given produit
+    //check if user has already have review for a given produit
     Route::get('/produits/{produit}/reviews/user/{user}', [ReviewController::class, 'checkUserReview']);
 
-//get products of a user commande
-Route::get('/commandes/{id}/produits', [UserController::class, 'getUserCommandeProducts']);
+    //get products of a user commande
+    Route::get('/commandes/{id}/produits', [UserController::class, 'getUserCommandeProducts']);
 
-//get user commandes
-Route::get('/user/{user}/commandes', [UserController::class, 'getUserCommande']);
+    //get user commandes
+    Route::get('/user/{user}/commandes', [UserController::class, 'getUserCommande']);
 });
 
 
@@ -97,8 +97,11 @@ Route::apiResource('/categories', CategoieController::class);
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
 
 //admin dashboard
-Route::get('/dashboard/statistics',[DashboardController::class, 'statistics']);
+Route::get('/dashboard/statistics', [DashboardController::class, 'statistics']);
 
 Route::get('/dashboard/sales', [DashboardController::class, 'salesData']);
 
 Route::get('/users', [UserController::class, 'index']);
+
+Route::get('/vendeurs', [VendeurController::class, 'index']);
+Route::delete('/vendeurs/{vendeur}', [VendeurController::class, 'destroy']);

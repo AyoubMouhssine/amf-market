@@ -2,6 +2,7 @@ insert into categories(nom) values ("Téléphone & Tablettes"),("TV & Hi Tech"),
 ("Informatique"),("Vêtements & Chaussures"),("Maison, cuisine & bureau"),
 ("Électroménager"),("Beauté & Santé"),("Jeux vidéos & Consoles"),("Sports & Loisirs"),("Bébé & Jouets"),("Supermarché");
 
+truncate table categories;
 insert into vendeurs(nom, prenom, cin, adresse, tel, email, password) values 
 ("Alami", "Amine", "CD578495", "Street 4 ,Rabat", "0765746374", "alami.amine11@gmail.com", "AlmiAmine!2002"),
 ("Ansari", "Mouad", "ZT899384", "Rue 3 Rte Sefrou Fes", "0654637263", "mouadAnsari_01@gmail.com", "mouad11_ansari!2002"),

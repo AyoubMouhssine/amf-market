@@ -11,23 +11,32 @@ class VendeurController extends Controller
 {
     use HttpResponses;
 
+    public function index()
+    {
+        return response()->json([
+            'vendeurs' => Vendeur::all()
+        ]);
+    }
+
+
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-            'email' => 'required|email', 
-            'nom' => 'required|string', 
-            'prenom' => 'required|string', 
-            'tel' => 'nullable|string', 
-            'cin'=>'required|string', 
-            'adresse' => 'nullable|string', 
+            'email' => 'required|email',
+            'nom' => 'required|string',
+            'prenom' => 'required|string',
+            'tel' => 'nullable|string',
+            'cin' => 'required|string',
+            'adresse' => 'nullable|string',
         ]);
-        $vendeur = Vendeur::where('vendeurId', $request->id)->first(); 
+        $vendeur = Vendeur::where('vendeurId', $request->id)->first();
         $vendeur->update($validatedData);
 
         return response()->json([
             'message' => 'Seller information updated successfully!',
-            'vendeur'=>$vendeur
-   ],200);}
+            'vendeur' => $vendeur
+        ], 200);
+    }
 
 
 
@@ -48,12 +57,21 @@ class VendeurController extends Controller
         ], "success", 200);
     }
 
-    public function stores(Vendeur $vendeur){
+    public function stores(Vendeur $vendeur)
+    {
         return response()->json([
             'success' => 'success',
-            'data'=>$vendeur->stores 
+            'data' => $vendeur->stores
         ]);
+    }
 
-        
+    public function destroy($id)
+    {
+        $vendeur = Vendeur::find($id);
+        $vendeur->delete();
+
+        return response()->json([
+            'message' => 'Vendeur deleted successfully'
+        ]);
     }
 }

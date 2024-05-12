@@ -40,6 +40,11 @@ const MenuAdmin = () => {
           </a>
         </li>
         <li>
+          <a className="dropdown-item-seller" href="/admin/dashboard/vendeurs">
+            Vendeurs
+          </a>
+        </li>
+        <li>
           <a className="dropdown-item-seller" href="#" onClick={handleLogout}>
             logout
           </a>
